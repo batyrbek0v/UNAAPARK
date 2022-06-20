@@ -37,6 +37,7 @@ const CarsMore = () => {
         <>
             <div className={cls.container}>
                 <div className={cls.cars_card}>
+                    <h1>Hello</h1>
                     <div className={cls.card_image}>
                         <img src={base.photo ? base.photo : notCar} alt={base.title} />
                     </div>
