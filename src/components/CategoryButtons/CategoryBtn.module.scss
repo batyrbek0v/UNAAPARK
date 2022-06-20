@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0rem 2rem;
+    
+
+
+    .btn {
+        background: #3B4FF9;
+        border: 1px solid #3B4FF9;
+        color: white;
+        &:hover {
+            background: none;
+            color: #3B4FF9;
+        }
+
+  
+        @media (min-width:320px) {
+            display: none;
+        }
+
+        @media (min-width:768px) {
+            display: block;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+    }
+
+    select {
+        @media (min-width:320px) {
+            width: 100%;
+            height: 40px;
+            border: 1px solid black;
+            outline: none;
+            margin-top: 20px;
+
+        }
+
+        @media (min-width:768px) {
+            display: none;
+        }
+    }
+}
