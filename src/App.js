@@ -14,7 +14,6 @@ import Filter from './components/Filter'
 import Home from './pages/Home'
 import Cars from './pages/Cars'
 import CarsMore from './pages/СarsMore/CarsMore'
-import Category from './pages/Category/Category'
 // import Loader from './components/Loader'
 import FAQ from './pages/FAQ'
 import Advantages from './pages/Advantages'
@@ -28,6 +27,8 @@ import PrivateRoute from './components/Private/PrivateRoute'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Favorites from './pages/Favorites'
+import AdminPanel from './pages/AdminPanel'
+import ChatAdmin from './components/ChatAdmin'
 // ========
 
 // Database
@@ -57,6 +58,8 @@ function App() {
           <Route path='/filter' element={<Filter />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/saved' element={<Favorites />} />
+          <Route path='/adminPanel' element={<AdminPanel />} />
+          <Route path='/chat' element={<ChatAdmin />} />
 
           {/* <Route path='/register' element={<Register />} /> */}
           <Route path='/carsmore/:id' element={<CarsMore />} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { removeSavedCar, toBase } from '../../configs/api'
+import { getSavedCars, removeSavedCar } from '../../configs/api'
 import { useAuth } from '../../providers/useAuth'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
@@ -7,23 +7,36 @@ import notImage from '../../components/images/notCar.png'
 import './Card.scss'
 
 const Favorites = () => {
-  const { users } = useAuth()
   const [ base, setBase ] = React.useState()
+  const { users } = useAuth()
+
+  console.log(base);
   
   React.useEffect(() => {
-    toBase.get(users && users.id)
+    getSavedCars(users && users.id)
       .then(res => {
-        const result = Object.entries(res.data && res.data)
+        const result = Object.entries(res.data)
           .map(([key, value]) => {
             return {
-              id: key,
+              id: key, 
               ...value
             }
           })
 
         setBase(result)
       })
-  }, [base])
+  }, [users])
+
+  const handleRemoveCar = (id) => {
+    console.log(id);
+    removeSavedCar(users.id , id)
+      .then(res => res 
+        && 
+      getSavedCars(users && users.id)
+        .then(res => console.log(res.data))
+      )
+  }
+
 
   return (
     <div className='savedCars'>
@@ -34,8 +47,10 @@ const Favorites = () => {
             <div className="cars_card" key={id}>
               <button 
                   className='favorites_btn'
-                  onClick={() => removeSavedCar(users.id, id).then(res => res && toBase.get())}
-                >
+                  onClick={() => {
+                    handleRemoveCar(id)
+                  }}
+              >
                   <MdClose /> 
                 </button>
                 <div className="card_image">
