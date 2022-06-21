@@ -1,0 +1,14 @@
+.message{
+  width: 100%;
+  height: 100px;
+  background: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15px;
+  cursor: pointer;
+  p{
+    margin: 5px 0;
+    color: white;
+  }
+}
