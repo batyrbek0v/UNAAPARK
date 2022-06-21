@@ -22,7 +22,7 @@ const Home = () => {
             Кыргызстане
           </h1>
           <button>
-            <Link to={'/cars'}>
+            <Link to={'/auth/register'}>
               Забронировать
             </Link>
           </button>

@@ -6,8 +6,6 @@ import FormInput from '../../../components/FormInput/FormInput'
 import GoogleAuth from '../GoogleAuth/GoogleAuth'
 import FormButtons from '../../../components/FormButton/FormButtons'
 import { handleLoginWithEmail } from '../../../firebase/firebase'
-import { useAuth } from '../../../providers/useAuth'
-import { addNewUser } from '../../../configs/api'
 
 
 
@@ -16,14 +14,6 @@ const EmailLogin = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const { users } = useAuth()
-
-    React.useEffect(() => {
-      if(users){
-        addNewUser(users)
-      }
-    }, [users])
 
     return (
         <React.Fragment>

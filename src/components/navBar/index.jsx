@@ -7,9 +7,9 @@ import { SideBar } from './SideBar'
 import logo from '../images/Logo.png'
 import User from './User'
 import { useAuth } from '../../providers/useAuth'
-import { handleSignOut } from '../../firebase/firebase'
 
 const NavBar = () => {
+  
   const data = JSON.parse(localStorage.getItem('data'))
 
   const [sideActive, setSideActive] = React.useState(false)
@@ -45,15 +45,30 @@ const NavBar = () => {
                 onClick={() => setListIndex(id)}
               ><Link to={path}>{title}</Link></li>)
             }
+            {/* <button onClick={e => {
+              e.preventDefault()
+              handleSignOut()
+            }}>Sign Out</button> */}
           </ul>
         </ul>
-        {/* {
-          user && (
-            <div className={cls.user}>
-              <User photo={user.photo} />
-            </div>
+        {
+          users && (
+            <User photo={users.photo} /> 
           )
-        } */}
+        }
+        <div className={users && users ? cls.authNone : cls.auth}>
+          <li>
+            <Link to={'/auth/login'} >
+              Войти
+            </Link>
+          </li>
+          <span>/</span>
+          <li>
+            <Link to={'/auth/register'} >
+              Регистрация
+            </Link>
+          </li>
+        </div>
         <div className={cls.bars} onClick={() => sideBarActiveTrue()}>
           <li>
             <GoThreeBars />
