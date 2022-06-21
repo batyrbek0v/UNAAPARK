@@ -25,17 +25,16 @@ import Send_Ads from './pages/Send_ads'
 import Anchor from './components/Anchor'
 import Support from './components/Support'
 import PrivateRoute from './components/Private/PrivateRoute'
-import { useAuth } from './providers/useAuth'
-import EmailRegist from './pages/Register/EmailRegist/EmailRegist'
 import Register from './pages/Register'
-import { addNewUser } from './configs/api'
+import Profile from './pages/Profile'
+import Favorites from './pages/favorites'
+import Leave from './pages/LeaveAnAccount'
 // ========
 
 // Database
 
 
 function App() {
-
   return (
     <div>
       <header>
@@ -57,6 +56,8 @@ function App() {
           <Route path='/rent' element={<Promo />} />
           <Route path='/contacts' element={<Contacts />} />
           <Route path='/filter' element={<Filter />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/saved' element={<Favorites />} />
 
           {/* <Route path='/register' element={<Register />} /> */}
           <Route path='/carsmore/:id' element={<CarsMore />} />

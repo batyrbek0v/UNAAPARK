@@ -1,9 +1,13 @@
 import React from 'react'
 import cls from './User.module.scss'
-import { IoMdClose } from 'react-icons/io'
-import { Link, } from 'react-router-dom'
+import { IoIosArrowDown, IoMdClose } from 'react-icons/io'
+import UserDrop from './UserDrop'
+import userDefaultAva from '../../images/defaultUserAvatar.png'
 
 const User = ({ photo }) => {
+
+  const [ sideActive, setSideActive ] = React.useState(false)
+
   // const data = JSON.parse(localStorage.getItem('data'))
 
   // const signOut = () => {
@@ -25,7 +29,18 @@ const User = ({ photo }) => {
   console.log(photo);
   return (
     <div>
-      <img className={cls.header} src={photo} alt="" />
+      <div 
+        className={cls.userInfo}
+        onClick={() => {
+          setSideActive(!sideActive)
+        }}
+      >
+        <img className={cls.header} src={photo ? photo : userDefaultAva} alt="" />
+        <li className={sideActive ? cls.rotated : cls.default}>
+          <IoIosArrowDown />
+        </li>
+      </div>
+      <UserDrop sideActive={sideActive} setSideActive={setSideActive} />
     </div>
     // <div>
     //   <div className={cls.header}>

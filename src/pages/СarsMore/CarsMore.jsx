@@ -24,7 +24,7 @@ const CarsMore = () => {
                 })
 
                 setDataBase(result)
-                result.filter(item => item.id == id ? setBase(item) : '')
+                result.filter(item => item.id === id ? setBase(item) : '')
             })
 
     }, [])

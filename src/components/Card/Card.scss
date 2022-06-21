@@ -17,6 +17,18 @@
     }
 
     .cars_card {
+        position: relative;
+        .favorites_btn{
+            width: 35px;
+            height: 35px;
+            list-style: none;
+            border: 1px solid black;
+            cursor: pointer;
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            margin: 0;
+        }
         @media (min-width:320px) {
             width: 302px;
             height: 320px;
