@@ -12,25 +12,26 @@ export const API = {
 
 export const Message = {
   get: (uid) => {
-    return axios.get(`${URL_BASE}/chat/message/${uid}.json`)
-  },
-  post: (data, uid) => {
-    return axios.post(`${URL_BASE}/chat/message.json`, data)
-  }
-}
-
-export const toBase = {
-  get: (uid) => {
-    return axios.get(`${URL_BASE}/favorites/${uid}.json`)
+    return axios.get(`${URL_BASE}/message/${uid}.json`)
   },
 
   post: (uid, data) => {
-    return axios.post(`${URL_BASE}/favorites/${uid}.json`, data)
+    return axios.post(`${URL_BASE}/message/${uid}.json`, data)
   },
-  delete: (uid, id) => {
-    return axios.delete(`${URL_BASE}/favorites/${uid}/${id}.json`,)
-      .then(res => console.log(res.data))
+  postFirstMessage: (data) => {
+    return axios.post(`${URL_BASE}/firstMessage.json`, data)
+  },
+  getFirstMessage: () => {
+    return axios.get(`${URL_BASE}/firstMessage.json`)
   }
 }
 
-export const removeSavedCar = (uid, id) => toBase.delete(`${URL_BASE}/favorites/${uid}/${id}.json`)
+
+export const toBase = {
+  post: (uid, data) => {
+    return axios.post(`${URL_BASE}/favorites/${uid}/product.json`, data)
+  },
+}
+
+export const removeSavedCar = (uid, id) => axios.delete(`${URL_BASE}/favorites/${uid}/product/${id}.json`)
+export const getSavedCars = (uid) => axios.get(`${URL_BASE}/favorites/${uid}/product/.json`)

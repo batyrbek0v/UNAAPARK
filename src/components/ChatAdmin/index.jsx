@@ -1,52 +1,35 @@
 import React from 'react'
-import cls from './SupportChat.module.scss'
+import { Message } from '../../configs/api'
+import cls from './ChatAdmin.module.scss'
 import { RiSendPlaneFill } from 'react-icons/ri'
-import { IoMdClose } from 'react-icons/io'
-import { Message } from '../../../../configs/api'
-import { useAuth } from '../../../../providers/useAuth'
 
-const SupportChat = ({ setChatActive }) => {
 
-  const [ database, setDataBase ] = React.useState(null)
+const ChatAdmin = () => {
+  const id = localStorage.getItem('userId')
+  const [ chatBase, setChatBase ] = React.useState(null)
   const [ text, setText ] = React.useState('')
-  
-  const { users } = useAuth()
 
   React.useEffect(() => {
-    Message.get(users.id) 
+    Message.get(id)
       .then(res => {
-        const result = Object.entries(res.data !== null ? res.data : '')
-          .map(([key, value]) => {
+        const result = Object.entries(res.data)
+          .map(([id, item]) => {
             return {
-              id: key, 
-              ...value
+              id: id, 
+              ...item
             }
           })
-        setDataBase(result);
+          
+        setChatBase(result)
       })
-
-  }, [database])
-
+  }, [chatBase])
 
   const send = () => {
     const time = new Date()
 
-    Message.post(users.id, {
-      id: users.id,
-      name: users.name,
+    Message.post(id, {
       message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
-      answer: false,
-      times: {
-        hour: time.getHours(),
-        minute: time.getMinutes()  
-      }
-    })
-
-    Message.postFirstMessage({
-      id: users.id,
-      name: users.name,
-      message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
-      answer: false,
+      answer: true,
       times: {
         hour: time.getHours(),
         minute: time.getMinutes()  
@@ -63,11 +46,6 @@ const SupportChat = ({ setChatActive }) => {
           <img src="https://prosystems.kz/templates/template_name/images/pfr/its.png" alt="" />
           <p>Служба поддержки</p>
         </div>
-        <div className={cls.right}>
-          <li onClick={() => setChatActive(false)}>
-            <IoMdClose />
-          </li>
-        </div>
       </div>
       <div 
         className={cls.chat_container}
@@ -75,13 +53,13 @@ const SupportChat = ({ setChatActive }) => {
         <div className={cls.myMessages}>
           {
 
-            database !== null ? database.map(({id, name, message, answer, times}, i) => (
+            chatBase !== null ? chatBase.map(({ name, message, answer, times }, i) => (
               <div 
-                className={ answer ? cls.answerContainer : cls.messageContainer} 
+                className={ answer ? cls.messageContainer : cls.answerContainer} 
                 key={i}
               >
                 <div 
-                  className={answer ? cls.answer : cls.myMessage}
+                  className={answer ? cls.myMessage : cls.answer}
                 >              
                 <div className={cls.mess}>
                     <i>{answer ? 'Служба поддержки' : name}</i>
@@ -118,4 +96,4 @@ const SupportChat = ({ setChatActive }) => {
   )
 }
 
-export default SupportChat
+export default ChatAdmin
