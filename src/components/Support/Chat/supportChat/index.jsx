@@ -2,36 +2,39 @@ import React from 'react'
 import cls from './SupportChat.module.scss'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
-import { Message, Answer } from '../../../../configs/api'
+import { Message } from '../../../../configs/api'
+import { useAuth } from '../../../../providers/useAuth'
 
-const SupportChat = ({setChatActive}) => {
+const SupportChat = ({ setChatActive }) => {
 
   const [ database, setDataBase ] = React.useState(null)
-  const [ answersBase, setAnswersBase ] = React.useState(null)
   const [ text, setText ] = React.useState('')
+  
+  const { users } = useAuth()
 
   React.useEffect(() => {
-    Message.get() 
+    Message.get(users && users.id) 
       .then(res => {
-        const result = Object.values(res.data)
+        const result = Object.entries(res.data && res.data)
+          .map(([key, value]) => {
+            return {
+              id: key, 
+              ...value
+            }
+          })
         setDataBase(result);
       })
 
-    Answer.get()
-      .then(res => {
-        const result = Object.values(res.data)
-        setAnswersBase(result)
-      })
+  }, [database])
 
-  }, [answersBase])
 
   const send = () => {
     const time = new Date()
     
-    Message.post({
-      messages: {
-        message: text
-      },
+    Message.post(users.id, {
+      name: users.name,
+      message: text,
+      answer: false,
       times: {
         hour: time.getHours(),
         minute: time.getMinutes()  
@@ -57,15 +60,16 @@ const SupportChat = ({setChatActive}) => {
       >
         <div className={cls.myMessages}>
           {
-            database && database.map(({name, messages, times}, i) => (
-              <div className={cls.main_block}>
+
+            database && database.map(({name, message, answer, times}, i) => (
+              <div className={ answer ? cls.answerContainer : cls.messageContainer}>
                 <div 
-                className={cls.myMessage}
+                className={answer ? cls.answer : cls.myMessage}
                 key={i}
                 >              
                 <div className={cls.mess}>
-                    <i>{name}</i>
-                    <p>{messages.message}</p>
+                    <i>{answer ? 'Служба поддержки' : name}</i>
+                    <p>{message}</p>
                   </div>
                   <div className={cls.time}>
                     <p>{times.hour}:{times.minute}</p>
@@ -74,23 +78,6 @@ const SupportChat = ({setChatActive}) => {
               </div>
             )) 
           } 
-
-          {
-            answersBase && answersBase.map(({message, times}, i) => (
-              <div 
-                className={cls.answer}
-                key={i}
-              >
-                <div className={cls.time}>
-                  <p>{times.hour}:{times.minute}</p>
-                </div>
-                <div className={cls.mess}>
-                  <i>Служба поддержки</i>
-                  <p>{message}</p>
-                </div>
-              </div>
-            ))
-          }
         </div>
       </div>
       <div 

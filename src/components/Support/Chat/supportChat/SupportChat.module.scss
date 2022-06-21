@@ -74,10 +74,11 @@
     &::-webkit-scrollbar-thumb{
       display: none ;
     }
-    .main_block{
+    .messageContainer{
       display: flex;
-      align-items: center;
-      border: 1px solid black;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
       .myMessage{
         @media (min-width: 320px) {
           width: 90%;
@@ -86,7 +87,6 @@
           width: 250px;
         }
         max-width: 200px;
-        border: 1px solid black;
         position: relative;
         display: flex;
         justify-content: flex-end;
@@ -95,8 +95,6 @@
         border-radius: 10px 10px 0 10px;
         margin-bottom: 15px;
         padding: 15px;
-        left: 10%;
-        top: 75%;
         bottom: 15px;
         
         .mess{
@@ -123,44 +121,49 @@
         }
       }
     }
-    .answer{
-      @media (min-width: 320px) {
-        width: 90%;
-      }
-      @media (min-width: 768px) {
-        width: 250px;
-      }
-      padding: 15px;
+    .answerContainer{
+      width: 100%;
       display: flex;
-      align-items: flex-end;
-      background: #F2F2F2;
-      text-align: left;
-      border-radius: 10px 10px 10px 0;
-      margin-bottom: 15px;
-      position: relative;
-      left: 0;
-      top: 75%;
-      bottom: 15px;
-      .mess{
-        margin-left: 50px;
-        i{
-          color: #333;
-          margin: 0;
+      justify-content: flex-start;
+      .answer{
+        @media (min-width: 320px) {
+          width: 90%;
         }
-        p{
-          color: #333;
-          margin: 0;
-          font-size: 13px;
-          margin-top: 5px;
+        @media (min-width: 768px) {
+          width: 250px;
         }
-      }
-      .time{
-        position: absolute;
-        bottom: 0;
-        left: 15px;
-        p{
-          color: #333;
-          font-size: 13px;
+        padding: 15px;
+        display: flex;
+        align-items: flex-end;
+        background: #F2F2F2;
+        text-align: left;
+        border-radius: 10px 10px 10px 0;
+        margin-bottom: 15px;
+        position: relative;
+        left: 0;
+        top: 75%;
+        bottom: 15px;
+        .mess{
+          margin-left: 50px;
+          i{
+            color: #333;
+            margin: 0;
+          }
+          p{
+            color: #333;
+            margin: 0;
+            font-size: 13px;
+            margin-top: 5px;
+          }
+        }
+        .time{
+          position: absolute;
+          bottom: 0;
+          left: 15px;
+          p{
+            color: #333;
+            font-size: 13px;
+          }
         }
       }
     }

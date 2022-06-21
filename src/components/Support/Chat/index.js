@@ -1,26 +1,23 @@
 import React from 'react'
+import { useAuth } from '../../../providers/useAuth'
+import CheckingAuth from './CheckingAuth'
 import SupportChat from './supportChat'
-import UsersInfo from './usersInfo'
 
 const SupportChats = ({ chatActive , setChatActive }) => {
-  const [ supportChat , setSupportChat ] = React.useState(false)
+  const { users } = useAuth()
   
   return (
     <>
       {
-        supportChat === false ? 
-        <UsersInfo 
+        users ? 
+        <CheckingAuth 
           chatActive={chatActive} 
           setChatActive={setChatActive} 
-          setSupportChat={setSupportChat}
-          supportChat={supportChat}
         />  
         : 
         <SupportChat 
           chatActive={chatActive} 
           setChatActive={setChatActive} 
-          supportChat={supportChat}
-          setSupportChat={setSupportChat} 
         />
       }
     </>

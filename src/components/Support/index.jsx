@@ -1,7 +1,7 @@
 import React from 'react'
 import cls from './Support.module.scss'
 import { HiOutlineChatAlt2 } from 'react-icons/hi'
-import SupportChats from './Chat'
+import CheckingAuth from './Chat/CheckingAuth'
 
 const Support = () => {
  
@@ -10,18 +10,18 @@ const Support = () => {
   return (
     <>
       {
-        chatActive === false ? 
-          ''
+        chatActive ? 
+          <CheckingAuth 
+            chatActive={chatActive}
+            setChatActive={setChatActive}
+          />
         : 
-        <SupportChats 
-          chatActive={chatActive} 
-          setChatActive={setChatActive} 
-        />
+          ''
       }
       <div 
         className={cls.support}
         onClick={() => {
-          setChatActive(true)
+          setChatActive(!chatActive)
         }}
       >
         <li>

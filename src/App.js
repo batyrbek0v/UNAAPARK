@@ -27,8 +27,7 @@ import Support from './components/Support'
 import PrivateRoute from './components/Private/PrivateRoute'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
-import Favorites from './pages/favorites'
-import Leave from './pages/LeaveAnAccount'
+import Favorites from './pages/Favorites'
 // ========
 
 // Database
