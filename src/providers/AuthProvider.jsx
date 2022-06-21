@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
                     email: user.email,
                     photo: user.photoURL,
                 })
-
                 setLoading(false)
             } else {
                 setLoading(false)

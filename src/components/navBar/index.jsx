@@ -9,6 +9,7 @@ import User from './User'
 import { useAuth } from '../../providers/useAuth'
 
 const NavBar = () => {
+  
   const data = JSON.parse(localStorage.getItem('data'))
 
   const [sideActive, setSideActive] = React.useState(false)

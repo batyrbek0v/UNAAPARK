@@ -14,6 +14,7 @@ export const Message = {
   get: (uid) => {
     return axios.get(`${URL_BASE}/message/${uid}.json`)
   },
+
   post: (uid, data) => {
     return axios.post(`${URL_BASE}/message/${uid}.json`, data)
   },

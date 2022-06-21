@@ -7,7 +7,7 @@ const PrivateRoute = () => {
 
   const { users } = useAuth()
 
-  return users ? <Outlet /> : <Login />
+  return users ? <Outlet /> : <Login /> 
 }
 
 export default PrivateRoute

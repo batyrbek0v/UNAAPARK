@@ -10,21 +10,25 @@ import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../providers/useAuth'
 
 const Card = () => {
-	const [ carBase, setCarBase ] = React.useState()
-	const [ base, setBase ] = React.useState(null)
+
+
+	const { users } = useAuth()
+
+	const [carBase, setCarBase] = React.useState()
+	const [base, setBase] = React.useState(null)
 
 	React.useEffect(() => {
 		API.get()
 			.then(res => {
 				const result = Object
-				.entries(res.data && res.data)
-				.map
-				(([key, value]) => {
-					return {
-						id: key,
-						...value
-					}
-				})
+					.entries(res.data && res.data)
+					.map
+					(([key, value]) => {
+						return {
+							id: key,
+							...value
+						}
+					})
 
 				setCarBase(result)
 			})
@@ -32,29 +36,13 @@ const Card = () => {
 
 
 
-	const { users } = useAuth()
 
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
 
-		// toBase.get(users.id)
-		// 	.then(res => {
-		// 		const result = Object.entries(res.data)
-		// 			.map(([key, value]) => {
-		// 				return {
-		// 					id: key, 
-		// 					...value
-		// 				}
-		// 			})
-		
-		// setBase(result);
-
-		// result.map(res => console.log(res))
-		// console.log(id);
-
 		toBase.post(users.id, favoriteCar)
 	}
-		
+
 	console.log(base);
 
 	if (!carBase) return <Loader />
@@ -66,13 +54,13 @@ const Card = () => {
 				{
 					carBase && carBase.map(({ id, title, photo, price }) => (
 						<div className="cars_card" key={id}>
-							<button 
+							<button
 								className='favorites_btn'
 								onClick={() => {
 									handleFavorite(id)
 								}}
-							> 
-								<BsBookmark /> 
+							>
+								<BsBookmark />
 							</button>
 							<div className="card_image">
 								<img src={photo ? photo : notImage} alt={title} />
@@ -97,6 +85,6 @@ const Card = () => {
 		</>
 	)
 }
-	
+
 
 export default Card

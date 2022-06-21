@@ -48,7 +48,7 @@ function App() {
           <Route path='/cars' element={<Cars />} />
           <Route path='/faq' element={<FAQ />} />
           <Route path='/advantages' element={<Advantages />} />
-          <Route path='/auth/register' element={<Register/>} />
+          <Route path='/auth/register' element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path='/send_ads' element={<Send_Ads />} />
             <Route path='/auth/login' element={<Login />} />

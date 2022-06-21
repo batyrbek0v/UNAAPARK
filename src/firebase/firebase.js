@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app'
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import { getDatabase } from 'firebase/database'
+import App from '../App';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDntJdWjCFGF9smJTjJQZiVDxogOGZeQVA",
@@ -20,24 +21,42 @@ const provider = new GoogleAuthProvider()
 
 export const database = getDatabase()
 
+///////////////////////////////////// LOGIN WITH GOOGLE
+
 export const handleLoginWithGoogle = () => signInWithPopup(auth, provider)
 
-export const handleLoginWithEmail = () => async (useremail, userpassword) => {
+///////////////////////////////////////////////////
+
+
+///////////////////////////////////// LOGIN
+
+
+export const handleLoginWithEmail = async (useremail, userpassword) => {
   try {
     await signInWithEmailAndPassword(auth, useremail, userpassword)
   } catch {
 
   }
 }
+///////////////////////////////////////////////////
 
-export const handleRegistWithEmail = async ( useremail, userpassword ,name) => {
+
+///////////////////////////////////// REGISTER
+export const handleRegistWithEmail = async (useremail, userpassword, name) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, useremail, userpassword)
     updateProfile(res.user, {
       displayName: name,
+      
     })
   } catch {
   }
 }
+
+///////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////// SIGN-OUT
 
 export const handleSignOut = () => signOut(auth)

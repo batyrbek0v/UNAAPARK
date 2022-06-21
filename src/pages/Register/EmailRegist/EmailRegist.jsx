@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import GoogleAuth from '../../Login/GoogleAuth/GoogleAuth'
 import cls from './EmailRegist.module.scss'
 import FormInput from '../../../components/FormInput/FormInput'
 import FormButtons from '../../../components/FormButton/FormButtons'
 import { handleRegistWithEmail } from '../../../firebase/firebase'
+import { useAuth } from '../../../providers/useAuth'
 
 
 
@@ -22,6 +23,13 @@ const EmailRegist = () => {
                 <form>
                     <h1>Регистрация</h1>
                     <FormInput
+                        type={'text'}
+                        name={'userName'}
+                        placeholder={'Имя пользователя'}
+                        defaultValue={name}
+                        setInputsValue={setName}
+                    />
+                    <FormInput
                         type={'email'}
                         name={'Email'}
                         placeholder={'Адрес электронной почты'}
@@ -35,18 +43,10 @@ const EmailRegist = () => {
                         defaultValue={password}
                         setInputsValue={setPassword}
                     />
-                    <FormInput
-                        type={'text'}
-                        name={'userName'}
-                        placeholder={'Имя пользователя'}
-                        defaultValue={name}
-                        setInputsValue={setName}
-                    />
+                  
                     <FormButtons
                         title={'Зарегистрироваться'}
-                        handleSubmit={() => {
-                            handleRegistWithEmail(email, password, name)
-                        }}
+                        handleSubmit={handleRegistWithEmail(email , password , name)}
                     />
                     <li>
                         <span></span>
