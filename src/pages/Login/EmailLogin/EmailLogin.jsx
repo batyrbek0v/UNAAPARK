@@ -36,9 +36,7 @@ const EmailLogin = () => {
                     />
                     <FormButtons
                         title={'Войти'}
-                        handleSubmit={() => {
-                            handleLoginWithEmail(email , password)
-                        }}
+                        handleSubmit={handleLoginWithEmail(email, password)}
                     />
      
                     <li>

@@ -27,8 +27,7 @@ import Support from './components/Support'
 import PrivateRoute from './components/Private/PrivateRoute'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
-import Favorites from './pages/favorites'
-import Leave from './pages/LeaveAnAccount'
+import Favorites from './pages/Favorites'
 // ========
 
 // Database
@@ -48,7 +47,7 @@ function App() {
           <Route path='/cars' element={<Cars />} />
           <Route path='/faq' element={<FAQ />} />
           <Route path='/advantages' element={<Advantages />} />
-          <Route path='/auth/register' element={<Register/>} />
+          <Route path='/auth/register' element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path='/send_ads' element={<Send_Ads />} />
             <Route path='/auth/login' element={<Login />} />

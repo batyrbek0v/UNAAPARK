@@ -11,18 +11,11 @@ export const API = {
 }
 
 export const Message = {
-  get: () => {
-    return axios.get(`${URL_BASE}/message.json`)
+  get: (uid) => {
+    return axios.get(`${URL_BASE}/chat/message/${uid}.json`)
   },
-
-  post: (data) => {
-    return axios.post(`${URL_BASE}/message.json`, data)
-  }
-}
-
-export const Answer = {
-  get: () => {
-    return axios.get(`${URL_BASE}/messageAnswer.json`)
+  post: (data, uid) => {
+    return axios.post(`${URL_BASE}/chat/message.json`, data)
   }
 }
 
@@ -39,3 +32,5 @@ export const toBase = {
       .then(res => console.log(res.data))
   }
 }
+
+export const removeSavedCar = (uid, id) => toBase.delete(`${URL_BASE}/favorites/${uid}/${id}.json`)
