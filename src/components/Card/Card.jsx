@@ -12,9 +12,6 @@ import UsersInfo from '../Support/Chat/usersInfo'
 
 const Card = () => {
 	
-
-	const a = 'e'
-
 	const [carBase, setCarBase] = React.useState()
 	const { users } = useAuth()
 
