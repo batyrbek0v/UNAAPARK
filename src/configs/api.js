@@ -7,7 +7,7 @@ export const API = {
   },
   post: (data) => {
     return axios.post(`${URL_BASE}/cars.json`, data)
-    .then(res => console.log(res.data))
+      .then(res => console.log(res.data))
   }
 }
 
@@ -15,6 +15,7 @@ export const Message = {
   get: () => {
     return axios.get(`${URL_BASE}/message.json`)
   },
+
   post: (data) => {
     return axios.post(`${URL_BASE}/message.json`, data)
   }
@@ -29,13 +30,15 @@ export const Answer = {
 export const toBase = {
   get: (uid) => {
     return axios.get(`${URL_BASE}/users/${uid}.json`)
-      .then(res => console.log(res.data))
   },
+
   post: (uid, data) => {
-    return axios.post(`${URL_BASE}/users/${uid}.json`, data)}
+    return axios.post(`${URL_BASE}/users/${uid}.json`, data)
+  }
 }
 
 export const addNewUser = {
   post: (data) => {
-    return axios.post(`${URL_BASE}/users.json`, data)}
+    return axios.post(`${URL_BASE}/users.json`, data)
+  }
 }

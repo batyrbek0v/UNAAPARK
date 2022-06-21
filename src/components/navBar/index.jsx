@@ -45,10 +45,6 @@ const NavBar = () => {
                 onClick={() => setListIndex(id)}
               ><Link to={path}>{title}</Link></li>)
             }
-            <button onClick={e => {
-              e.preventDefault()
-              handleSignOut()
-            }}>Sign Out</button>
           </ul>
         </ul>
         {/* {
