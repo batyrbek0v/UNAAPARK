@@ -7,6 +7,10 @@ import EmailRegist from './EmailRegist/EmailRegist'
 
 const Register = () => {
 
+  const {users} = useAuth()
+  const navigate = useNavigate()
+  
+  if(users) return navigate('/')
   
   return (
     <div className={cls.login}>

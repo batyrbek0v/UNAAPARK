@@ -1,19 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CategoryBtn from '../CategoryButtons/CategoryBtn'
+import CategoryBtn from '../../CategoryButtons/CategoryBtn'
 // import { CarBase } from '../utils/CarBase/CarBase'
-import notImage from '../images/notCar.png'
+import notImage from '../../images/notCar.png'
 import './Card.scss'
-import Loader from '../Loader'
-import { API, toBase } from '../../configs/api'
+import Loader from '../../Loader'
+import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
-import { useAuth } from '../../providers/useAuth'
+import { useAuth } from '../../../providers/useAuth'
 
 const Card = () => {
-
-
 	const { users } = useAuth()
-
 	const [carBase, setCarBase] = React.useState()
 	const [base, setBase] = React.useState(null)
 
@@ -49,23 +46,30 @@ const Card = () => {
 
 	return (
 		<>
-			<CategoryBtn />
+			{/* <CategoryBtn />+ */}
 			<div className='card_container'>
 				{
 					carBase && carBase.map(({ id, title, photo, price }) => (
 						<div className="cars_card" key={id}>
-							<button
+							{/* <button
 								className='favorites_btn'
 								onClick={() => {
 									handleFavorite(id)
 								}}
 							>
 								<BsBookmark />
-							</button>
-							<div className="card_image">
-								<img src={photo ? photo : notImage} alt={title} />
-							</div>
+							</button> */}
 							<div className="card_body">
+								<div className="card_img">
+									<img src={photo ? photo : notImage} alt={title} />
+								</div>
+								<div className='card_title'>
+									<h4>{title}</h4>
+									<h4>2015</h4>
+									<h4>{price} $ в сутки</h4>
+								</div>
+							</div>
+							{/* <div className="card_body">
 								<h2>{title}</h2>
 								<div className="card_price">
 									<h4>Цена:</h4>
@@ -74,8 +78,9 @@ const Card = () => {
 										<span> / в сутки</span>
 									</p>
 								</div>
-							</div>
+							</div> */}
 							<div className="card_footer">
+<<<<<<< HEAD:src/components/Card/Card.jsx
 								<Link 
 									className='card_footer_btn' 
 									to={`/carsmore/${id}`}
@@ -83,6 +88,10 @@ const Card = () => {
 										localStorage.setItem('idOfCar', id)
 									}}
 								>Подробнее</Link>
+=======
+								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
+								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Забронировать</Link>
+>>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7:src/components/Card/CarCards/Card.jsx
 							</div>
 						</div>
 					)).reverse()

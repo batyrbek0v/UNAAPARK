@@ -25,6 +25,7 @@ const Notifications = () => {
       localStorage.setItem('userId', id)
       navigate('/chat')
     }
+<<<<<<< HEAD
 
   // const send = () => {
   //   const time = new Date()
@@ -38,6 +39,8 @@ const Notifications = () => {
   //     }
   //   })
   // }
+=======
+>>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7
 
   return (
     <div>
@@ -54,9 +57,12 @@ const Notifications = () => {
         </div>
         ))  
       }
+<<<<<<< HEAD
     {/* 
       <input type="text" onChange={e => setText(e.target.value)}/>
       <button onClick={() => send()}>Отправить</button> */}
+=======
+>>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7
     </div>
   )
 }

@@ -47,7 +47,6 @@ export const handleRegistWithEmail = async (useremail, userpassword, name) => {
     const res = await createUserWithEmailAndPassword(auth, useremail, userpassword)
     updateProfile(res.user, {
       displayName: name,
-      
     })
   } catch {
   }
