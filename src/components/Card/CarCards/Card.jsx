@@ -17,17 +17,26 @@ const Card = () => {
 	React.useEffect(() => {
 		API.get()
 			.then(res => {
-				const result = Object
-					.entries(res.data && res.data)
-					.map
-					(([key, value]) => {
-						return {
-							id: key,
-							...value
+				// const result = Object
+				// 	.entries(res.data && res.data)
+				// 	.map
+				// 	(([key, value]) => {
+				// 		return {
+				// 			id: key,
+				// 			...value
+				// 		}
+				// 	})
+
+				const baseWithID = Object.entries(res.data)
+					.map(item => {
+						const id = item[0]
+						return  {
+							...item[1],
+							id
 						}
 					})
-
-				setCarBase(result)
+				
+				setCarBase(baseWithID)
 			})
 	}, [])
 
@@ -36,11 +45,10 @@ const Card = () => {
 
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
-
+		console.log(id)
 		toBase.post(users.id, favoriteCar)
 	}
 
-	console.log(base);
 
 	if (!carBase) return <Loader />
 

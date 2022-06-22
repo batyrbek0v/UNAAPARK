@@ -9,28 +9,33 @@ import Card from '../../components/Card/CarCards/Card'
 import Loader from '../../components/Loader'
 
 const Favorites = () => {
-	const [base, setBase] = React.useState()
+	const [base, setBase] = React.useState(null)
+	const [text , setText] = React.useState('hi')
 	const { users } = useAuth()
-
 
 	React.useEffect(() => {
 		getSavedCars(users && users.id)
 			.then(res => {
-				const result = Object.entries(res.data)
-					.map(([key, value]) => {
-						return {
-							id: key,
-							...value
+				if(res.data){
+					const baseWithID = Object.entries(res.data)
+					.map(item => {
+						const id = item[0]
+						return  {
+							...item[1],
+							id
 						}
 					})
+					setBase(baseWithID)
 
-				setBase(result)
+				}
+				setText(res.data)
 			})
-	}, [users])
+	}, [ text])
+
 
 	const handleRemoveCar = (id) => {
 		removeSavedCar(users.id, id)
-		console.log(id)
+		setText('Delete')
 	}
 
 
@@ -42,7 +47,7 @@ const Favorites = () => {
 			<h1>Ваши сохраненные машины</h1>
 			<div className='card_container'>
 				{
-					base && base.map(({ id, title, photo, price }) => (
+					base && base.map(({ id, title, photo, price } , index) => (
 						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
 							<div className="card_body">
 								<div className="card_img">
@@ -52,18 +57,18 @@ const Favorites = () => {
 									<h4>{title}</h4>
 									<h4>2015</h4>
 									<h4>{price} $ в сутки</h4>
-
 								</div>
+								<button
+									className='favorites_btn'
+									onClick={e => {
+										e.preventDefault()
+										handleRemoveCar(id)
+									}}
+								>
+									<MdClose />
+								</button>
 							</div>
-							<button
-								className='favorites_btn'
-								onClick={e => {
-									e.preventDefault()
-									handleRemoveCar(id)
-								}}
-							>
-								<MdClose />
-							</button>
+
 							<div className="card_footer">
 								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
 								<button

@@ -34,6 +34,6 @@ export const toBase = {
 }
 
 
-export const getSavedCars = (uid) => axios.get(`${URL_BASE}/favorites/${uid}/product/.json`)
+export const getSavedCars = (uid) => axios.get(`${URL_BASE}/favorites/${uid}/product.json`)
 
 export const removeSavedCar = (uid, id) => axios.delete(`${URL_BASE}/favorites/${uid}/product/${id}.json`)
