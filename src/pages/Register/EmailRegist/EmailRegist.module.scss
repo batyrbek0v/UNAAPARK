@@ -8,15 +8,7 @@ form {
     margin: 15px 0;
     background: none;
     border: 2px solid black;
-
-    h1 {
-        color: black;
-    }
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    color: #333;
 
     div {
         input {
@@ -39,7 +31,7 @@ form {
         }
     }
 
-    li {
+    p {
         display: flex;
         align-items: center;
         list-style: none;
@@ -52,32 +44,6 @@ form {
             margin: 0 15px;
         }
     }
-
-    button {
-        width: 250px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 25px;
-        background: none;
-        border: 1px solid black;
-        color: black;
-        cursor: pointer;
-        transition: .5s;
-
-        &:hover {
-            color: white;
-            background: black;
-        }
-
-        img {
-            width: 15px;
-            height: 15px;
-            margin-right: 10px;
-        }
-    }
-
     .havent {
         margin: 15px 0;
 
@@ -85,11 +51,5 @@ form {
             color: #3646D4;
             margin-left: 15px;
         }
-    }
-
-    .forgot_password {
-        margin-top: 15px;
-        text-decoration: underline;
-        color: #3646D4;
     }
 }

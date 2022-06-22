@@ -38,34 +38,23 @@
         cursor: pointer;
       }
     }
-    li{
-      display: flex;
-      align-items: center;
-      list-style: none;
-      color: black;
-      span{
-        width: 95px;
-        height: 1px;
-        background: black;
-        margin: 0 15px;
-      }
-    }
-    button{
-      width: 250px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 25px;
-      background: none;
-      border: 1px solid black;
-      color: black;
-      cursor: pointer;
-      transition: .5s;
-      &:hover{
-        color: white;
-        background: black;
-      }
+    .button{
+      // width: 250px;
+      // height: 40px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      // margin-top: 25px;
+      // background: none;
+      // border: 1px solid black;
+      // color: black;
+      // cursor: pointer;
+      // transition: .5s;
+      // background-color: red;
+      // &:hover{
+      //   color: white;
+      //   background: black;
+      // }
       img{
         width: 15px;
         height: 15px;

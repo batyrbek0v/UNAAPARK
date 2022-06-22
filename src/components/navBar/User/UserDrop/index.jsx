@@ -5,14 +5,20 @@ import { useAuth } from '../../../../providers/useAuth'
 import cls from './UserDrop.module.scss'
 import { UserDrop_list } from './UserDrop_list'
 
-const UserDrop = ({ sideActive, setSideActive }) => {
+const UserDrop = ({ sideActive, setSideActive, name }) => {
 
   const { users } = useAuth()
 
   return (
     <div className={sideActive ? cls.userDrop : cls.none}>
       <div className={cls.username}>
-        <img src={users.photo} alt="" />
+        <div className={cls.person}>
+          {
+            users.photo
+              ? <img src={users.photo} alt="" />
+              : name
+          }
+        </div>
         <h4>{users.name}</h4>
       </div>
       <div className={cls.list}>

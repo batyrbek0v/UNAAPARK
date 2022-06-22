@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-import HowCarsharingWorks from '../../components/HowСarsharingWorks'
+import HowCarsharingWorks from '../../components/Card/HowCarsharingWorks'
 import OurAdvantages from '../../components/OurAdvantages'
 import { useAuth } from '../../providers/useAuth'
 import cls from './Home.module.scss'

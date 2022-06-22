@@ -2,7 +2,7 @@ import React from 'react'
 import { HTUList as list } from './HTUList'
 import cls from './HTU.module.scss'
 import { useEffect } from 'react'
-import Loader from '../Loader'
+import Loader from '../../Loader'
 const HTUCard = () => {
 
     const [data, setData] = React.useState('')

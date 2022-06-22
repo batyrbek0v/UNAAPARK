@@ -1,6 +1,6 @@
 import React from 'react'
 import cls from './Contract.module.scss'
-import { contracts } from './Contracts'
+import { contracts } from './ContrList'
 
 const Contract = () => {
 

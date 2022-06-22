@@ -43,22 +43,26 @@ const EmailRegist = () => {
                         defaultValue={password}
                         setInputsValue={setPassword}
                     />
-                  
-                    <FormButtons
-                        title={'Зарегистрироваться'}
-                        handleSubmit={handleRegistWithEmail(email , password , name)}
-                    />
-                    <li>
+                    <button
+                        className={cls.button}
+                        onClick={e => {
+                            e.preventDefault()
+                            handleRegistWithEmail(email, password , name)
+                        }}
+                    >
+                        Зарегистрироваться
+                    </button>
+                    <p>
                         <span></span>
                         <li>или</li>
                         <span></span>
-                    </li>
-                    <li className={cls.havent}>
+                    </p>
+                    <p className={cls.havent}>
                         Уже есть аккаунт?
                         <Link to='/auth/login'>
                             Войти
                         </Link>
-                    </li>
+                    </p>
                     <GoogleAuth />
                 </form>
             </div>
