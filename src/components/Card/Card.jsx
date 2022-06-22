@@ -76,7 +76,13 @@ const Card = () => {
 								</div>
 							</div>
 							<div className="card_footer">
-								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Подробнее</Link>
+								<Link 
+									className='card_footer_btn' 
+									to={`/carsmore/${id}`}
+									onClick={() => {
+										localStorage.setItem('idOfCar', id)
+									}}
+								>Подробнее</Link>
 							</div>
 						</div>
 					)).reverse()

@@ -7,7 +7,13 @@ export const API = {
   },
   post: (data) => {
     return axios.post(`${URL_BASE}/cars.json`, data)
-  }
+  },
+  postReview: (id, data) => {
+    return axios.post(`${URL_BASE}/cars/${id}/review.json`, data)
+  },
+  getReview: (id) => {
+    return axios.get(`${URL_BASE}/cars/${id}/review.json`)
+  },
 }
 
 export const Message = {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Message } from '../../configs/api'
-import ChatAdmin from '../ChatAdmin'
 import cls from './Notifications.module.scss'
 
 
@@ -12,9 +11,11 @@ const Notifications = () => {
     Message.getFirstMessage()
       .then(res => {
         const result = Object.values(res.data)
-        
-        setChatBase(result)
 
+        var newResult = result && result.filter(item => {
+          return item.name === item.name ? item : ''
+        })
+        console.log(newResult);
       })
     }, [chatBase])
     
@@ -24,7 +25,7 @@ const Notifications = () => {
       localStorage.setItem('userId', id)
       navigate('/chat')
     }
-    
+
   // const send = () => {
   //   const time = new Date()
 
@@ -41,17 +42,19 @@ const Notifications = () => {
   return (
     <div>
       {
-        chatBase && chatBase.map(({id, name, message}) => (
-          <div 
-            className={cls.message}
-            onClick={() => toChat(id)}
-          >
-            <p>{name}</p>
-            <p>{message}</p>
-          </div>
-        ))
+        chatBase && chatBase.map(({id, name, message}, i) => (
+        <div 
+          className={cls.message}
+          onClick={() => toChat(id)}
+          key={i}
+        >
+          
+          <p>{name}</p>
+          <p>{message}</p>
+        </div>
+        ))  
       }
-{/* 
+    {/* 
       <input type="text" onChange={e => setText(e.target.value)}/>
       <button onClick={() => send()}>Отправить</button> */}
     </div>

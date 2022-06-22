@@ -5,6 +5,7 @@ import { IoReturnUpBack } from 'react-icons/io5'
 import { API } from '../../configs/api'
 import Loader from '../../components/Loader'
 import notCar from '../../components/images/notCar.png'
+import Review from './Review'
 
 
 const CarsMore = () => {
@@ -31,7 +32,6 @@ const CarsMore = () => {
     
     console.log(dataBase);
     if (!base) return <Loader />
-
 
     return (
         <>
@@ -64,6 +64,8 @@ const CarsMore = () => {
                 <div className={cls.buttons2}>
                     <Link to={'/cars'} className={cls.btn2}><IoReturnUpBack /></Link>
                 </div>
+
+                <Review />
             </div>
 
         </>
