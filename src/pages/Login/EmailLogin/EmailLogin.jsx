@@ -34,22 +34,26 @@ const EmailLogin = () => {
                         defaultValue={password}
                         setInputsValue={setPassword}
                     />
-                    <FormButtons
-                        title={'Войти'}
-                        handleSubmit={handleLoginWithEmail(email, password)}
-                    />
-     
-                    <li>
+                    <button
+                        className={cls.button}
+                        onClick={e => {
+                            e.preventDefault()
+                            handleLoginWithEmail(email, password)
+                        }}
+                    >
+                        Войти
+                    </button>
+                    <p>
                         <span></span>
                         <li>или</li>
                         <span></span>
-                    </li>
-                    <li className={cls.havent}>
+                    </p>
+                    <p className={cls.havent}>
                         Нет аккаунта?
                         <Link to='/auth/register'>
                             Регистрация
                         </Link>
-                    </li>
+                    </p>
                     <GoogleAuth />
                 </form>
             </div>

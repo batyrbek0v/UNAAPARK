@@ -1,13 +1,13 @@
 import React from 'react'
 import Banner from '../../components/Banner/ContactBanner/Banner'
-import ContactCard from '../../components/ContactCard/Card'
+import Card from '../../components/Card/ContactCard/Card'
 import Map from '../../components/ContactMap/Map'
 
 const Contacts = () => {
   return (
     <React.Fragment>
       <Banner/>
-      <ContactCard/>
+      <Card/>
       <Map/>
     </React.Fragment>
   )

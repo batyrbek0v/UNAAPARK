@@ -1,7 +1,7 @@
 import React from 'react'
-import Contract from '../../components/ContrCard'
-import FAQCard from '../../components/FAQCard'
-import HTUCard from '../../components/HTUCard/HTUCard'
+import Contract from '../../components/Card/ContrCard'
+import FAQCard from '../../components/Card/FAQCard'
+import HTUCard from '../../components/Card/HTUCard/HTUCard'
 
 const FAQ = () => {
 

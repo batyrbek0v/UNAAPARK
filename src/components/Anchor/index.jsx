@@ -4,7 +4,7 @@ import cls from './Anchor.module.scss'
 
 const Anchor = () => {
 
-	const [ anchorActive, setAnchorActive ] = React.useState(true)
+	const [anchorActive, setAnchorActive] = React.useState(true)
 
 	function scroll() {
 		window.scroll({
@@ -12,12 +12,12 @@ const Anchor = () => {
 			top: 0,
 			behavior: 'smooth',
 		})
-	}	
+	}
 
 	window.onscroll = () => {
-		if(window.scrollY > 100){
+		if (window.scrollY > 100) {
 			setAnchorActive(true)
-		}else{
+		} else {
 			setAnchorActive(false)
 		}
 	}
@@ -25,11 +25,8 @@ const Anchor = () => {
 
 	return (
 		<div
-			className={ anchorActive ? cls.anchor : cls.anchorNone }
-			onClick={e => {
-				e.preventDefault()
-				scroll()
-			}}
+			className={anchorActive ? cls.anchor : cls.anchorNone}
+			onClick={scroll}
 		>
 			<li>
 				<HiOutlineArrowCircleUp />
