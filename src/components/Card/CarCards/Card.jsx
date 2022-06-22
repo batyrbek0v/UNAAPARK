@@ -11,8 +11,8 @@ import { useAuth } from '../../../providers/useAuth'
 
 const Card = () => {
 	const { users } = useAuth()
-	const [carBase, setCarBase] = React.useState()
-	const [base, setBase] = React.useState(null)
+	const [ carBase, setCarBase ] = React.useState()
+	const [ base, setBase ] = React.useState(null)
 
 	React.useEffect(() => {
 		API.get()
@@ -29,7 +29,7 @@ const Card = () => {
 
 				setCarBase(result)
 			})
-	}, [])
+	}, [base])
 
 
 
@@ -51,17 +51,19 @@ const Card = () => {
 				{
 					carBase && carBase.map(({ id, title, photo, price }) => (
 						<div className="cars_card" key={id}>
-							{/* <button
+							<button
 								className='favorites_btn'
 								onClick={() => {
 									handleFavorite(id)
 								}}
 							>
 								<BsBookmark />
-							</button> */}
+							</button>
 							<div className="card_body">
 								<div className="card_img">
-									<img src={photo ? photo : notImage} alt={title} />
+									<Link to={`/carsmore/${id}`}>
+										<img src={photo ? photo : notImage} alt={title} />
+									</Link>
 								</div>
 								<div className='card_title'>
 									<h4>{title}</h4>
@@ -80,18 +82,8 @@ const Card = () => {
 								</div>
 							</div> */}
 							<div className="card_footer">
-<<<<<<< HEAD:src/components/Card/Card.jsx
-								<Link 
-									className='card_footer_btn' 
-									to={`/carsmore/${id}`}
-									onClick={() => {
-										localStorage.setItem('idOfCar', id)
-									}}
-								>Подробнее</Link>
-=======
 								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
 								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Забронировать</Link>
->>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7:src/components/Card/CarCards/Card.jsx
 							</div>
 						</div>
 					)).reverse()

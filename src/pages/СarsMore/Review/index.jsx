@@ -32,7 +32,7 @@ const Review = () => {
 
     const time = new Date()
 
-    API.postReview(id, {
+    text.length === 0 ? alert('Напишите что-нибудь!') : API.postReview(id, {
       name: users.name,
       review: text,
       times: {
@@ -43,6 +43,8 @@ const Review = () => {
         minute: time.getMinutes()
       }
     })
+
+    setText('')
   }
 
   return (
@@ -71,6 +73,7 @@ const Review = () => {
           <input 
             type="text" 
             placeholder='Ваш отзыв'
+            value={text}
             onChange={e => setText(e.target.value)}
           />
           <button onClick={() => send()}>Отправить</button>
@@ -82,16 +85,16 @@ const Review = () => {
             <div className={cls.reviewCard}>
               <div className={cls.reviewersInfo}>
                 <div className={cls.avatar}>
-                  <img src={users.photo ? users.photo : userDefaultAva} alt="avatar" />
+                  <img src={users && users.photo ? users.photo : userDefaultAva} alt="avatar" />
                 </div>
                 <div className={cls.info}>
                   <i>{name}</i>
                   
                   <div className={cls.timeInfo}>
                     <div className={cls.date}>
-                      <p>{times.day}</p>
+                      <p>{times.day < 10 ? `0${times.day}` : times.day}</p>
                       <span>/</span>
-                      <p>{times.month}</p>
+                      <p>{times.month < 10 ? `0${times.month}` : times.month}</p>
                       <span>/</span>
                       <p>{times.year}</p>
                     </div>

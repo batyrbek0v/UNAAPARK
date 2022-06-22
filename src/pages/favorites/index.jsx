@@ -14,28 +14,30 @@ const Favorites = () => {
 
 
   React.useEffect(() => {
-    getSavedCars(users && users.id)
-      .then(res => {
-        const result = Object.entries(res.data)
-          .map(([key, value]) => {
-            return {
-              id: key,
-              ...value
-            }
-          })
+    // getSavedCars(users && users.id)
+    //   .then(res => {
+    //     const result = Object.entries(res.data)
+    //       .map(([key, value]) => {
+    //         return {
+    //           id: key,
+    //           ...value
+    //         }
+    //       })
 
-        setBase(result)
-      })
+    //     setBase(result)
+    //   })
+
+      getSavedCars(users && users.id)
+        .then(res => {
+          const result = Object.values(res.data)
+
+          setBase(result)
+        })
   }, [users])
 
   const handleRemoveCar = (id) => {
     console.log(id);
     removeSavedCar(users.id, id)
-      .then(res => res
-        &&
-        getSavedCars(users && users.id)
-          .then(res => console.log(res.data))
-      )
   }
 
 

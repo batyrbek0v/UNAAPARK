@@ -13,9 +13,12 @@ const Notifications = () => {
         const result = Object.values(res.data)
 
         var newResult = result && result.filter(item => {
-          return item.name === item.name ? item : ''
+          if(item.id === item.id){
+            return item
+          }
         })
-        console.log(newResult);
+        
+        setChatBase(newResult)
       })
     }, [chatBase])
     
@@ -25,7 +28,6 @@ const Notifications = () => {
       localStorage.setItem('userId', id)
       navigate('/chat')
     }
-<<<<<<< HEAD
 
   // const send = () => {
   //   const time = new Date()
@@ -39,30 +41,22 @@ const Notifications = () => {
   //     }
   //   })
   // }
-=======
->>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7
 
   return (
-    <div>
+    <div className={cls.notifications}>
       {
-        chatBase && chatBase.map(({id, name, message}, i) => (
-        <div 
-          className={cls.message}
-          onClick={() => toChat(id)}
-          key={i}
-        >
-          
-          <p>{name}</p>
-          <p>{message}</p>
-        </div>
+        chatBase && chatBase.slice(chatBase.length - 1, chatBase.length).map(({id, name, message}, i) => (
+          <div 
+            className={cls.message}
+            onClick={() => toChat(id)}
+            key={i}
+          >
+            
+            <p>{name}</p>
+            <p>{message}</p>
+          </div>
         ))  
       }
-<<<<<<< HEAD
-    {/* 
-      <input type="text" onChange={e => setText(e.target.value)}/>
-      <button onClick={() => send()}>Отправить</button> */}
-=======
->>>>>>> 3b93a53a8283c30bfd9b222191ad1643ad4b2ec7
     </div>
   )
 }
