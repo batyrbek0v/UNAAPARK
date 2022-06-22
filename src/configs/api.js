@@ -37,7 +37,12 @@ export const toBase = {
   post: (uid, data) => {
     return axios.post(`${URL_BASE}/favorites/${uid}/product.json`, data)
   },
+  isSaved: (uid, id, data) => {
+    return axios.post(`${URL_BASE}/favorites/${uid}/product/${id}/saved.json`, data)
+  },
 }
 
+
+export const getSavedCars = (uid) => axios.get(`${URL_BASE}/favorites/${uid}/.json`)
+
 export const removeSavedCar = (uid, id) => axios.delete(`${URL_BASE}/favorites/${uid}/${id}.json`)
-export const getSavedCars = (uid) => axios.get(`${URL_BASE}/favorites/${uid}.json`)

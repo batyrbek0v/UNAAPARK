@@ -18,33 +18,15 @@
     }
 
     .cars_card {
-
         position: relative;
-        @media (min-width: 1024px) {
-            border: 1px solid #d6e8f9;
-        }
+        text-decoration: none;
 
-        
         .favorites_btn {
             width: 35px;
             height: 35px;
-            list-style: none;
+            margin: 0;
             border: 1px solid black;
             cursor: pointer;
-            position: absolute;
-            right: 25px;
-            top: 25px;
-            margin: 0;
-
-            @media (min-width:320px) {
-                opacity: 1;
-                visibility: 1;
-            }
-
-            @media (min-width:1024px) {
-                opacity: 0;
-                visibility: 0;
-            }
         }
 
         @media (min-width:320px) {
@@ -65,19 +47,21 @@
         }
 
         @media (min-width:768px) {
-            width: 450px;
-            margin: 10px 10px;
+            width: 100%;
+            height: 200px;
+            margin: 20px 0px;
         }
 
         @media (min-width:1024px) {
+            width: 400px;
             box-shadow: none;
             transition: 0.3s;
             margin: 20px 2.5px;
+            border: 1px solid #d6e8f9;
+        }
 
-            &:hover {
-                box-shadow: 0 0 5px rgba(100, 100, 100, 0.9);
-
-            }
+        @media (min-width:1300px) {
+            width: 450px;
         }
 
         .card_body {
@@ -85,7 +69,6 @@
                 width: 100%;
                 height: 144px;
                 position: relative;
-                border: 0;
                 padding: 0.55rem;
                 top: 0;
                 left: 0;
@@ -105,11 +88,30 @@
             }
 
             .card_img {
-                position: absolute;
-                top: -55%;
-                left: -5%;
+                @media (min-width:320px) {
+                    position: absolute;
+                    top: -40%;
+                    left: -5%;
+                }
+                @media (min-width:768px) {
+                    top: -55%;
+                }
+                @media (min-width:1024px){
+                    top: -30%;
+                }
                 img {
                     @media (min-width:320px) {
+                        width: 60%;
+                        height: 60%;
+                        object-fit: cover;
+                    }
+
+                    @media (min-width:768px) {
+                        width: 50%;
+                        height: 50%;
+                        object-fit: cover;
+                    }
+                    @media (min-width:1024px) {
                         width: 60%;
                         height: 60%;
                         object-fit: cover;
@@ -117,7 +119,7 @@
                 }
             }
 
-            .card_title{
+            .card_title {
                 position: absolute;
                 display: flex;
                 gap: 10px;
@@ -125,19 +127,21 @@
                 align-items: flex-end;
                 right: 4%;
 
-                h4{
+                h4 {
                     color: #333;
 
                     margin: 0;
+
                     &:nth-child(2) {
                         color: #555;
                     }
+
                     &:nth-child(3) {
                         color: #555;
                     }
                 }
             }
-       
+
 
         }
 
@@ -182,15 +186,18 @@
                     background: #3B4FF9;
                     color: white;
                     transition: .5s;
-                    border-radius:0px 30px 0px 8px;
+                    border-radius: 0px 30px 0px 8px;
                 }
+
                 &:nth-child(2) {
-                   
-
                     border-radius: 30px 0 8px 0;
+                    border-left: 1px solid #d6e8f9;
 
                 }
+
                 &:hover {
+                    border-top: 1px solid #d6e8f9;
+                    border-right: 1px solid #d6e8f9;
                     color: #3B4FF9;
                     background: none;
                 }
@@ -200,9 +207,9 @@
             .favorites_btn {
                 width: 50px;
                 list-style: none;
-                margin: 0;
-                z-index: 100;
+                border: 1px solid black;
                 cursor: pointer;
+                margin: 0;
             }
         }
     }

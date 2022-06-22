@@ -37,7 +37,8 @@ const Card = () => {
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
 
-		toBase.post(users.id, favoriteCar)
+		toBase.post(users && users.id, favoriteCar)
+		toBase.post(users && users.id, id, true)
 	}
 
 	console.log(base);
@@ -50,15 +51,8 @@ const Card = () => {
 			<div className='card_container'>
 				{
 					carBase && carBase.map(({ id, title, photo, price }) => (
-						<div className="cars_card" key={id}>
-							<button
-								className='favorites_btn'
-								onClick={() => {
-									handleFavorite(id)
-								}}
-							>
-								<BsBookmark />
-							</button>
+						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+
 							<div className="card_body">
 								<div className="card_img">
 									<Link to={`/carsmore/${id}`}>
@@ -69,21 +63,26 @@ const Card = () => {
 									<h4>{title}</h4>
 									<h4>2015</h4>
 									<h4>{price} $ в сутки</h4>
+									<button
+										className='favorites_btn'
+										onClick={() => {
+											handleFavorite(id)
+										}}
+									>
+										<BsBookmark />
+									</button>
 								</div>
 							</div>
-							{/* <div className="card_body">
-								<h2>{title}</h2>
-								<div className="card_price">
-									<h4>Цена:</h4>
-									<p>
-										{price}$
-										<span> / в сутки</span>
-									</p>
-								</div>
-							</div> */}
 							<div className="card_footer">
 								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Забронировать</Link>
+								<button
+									className='card_footer_btn'
+									onClick={() => {
+										window.open('https://t.me/sattarzanov')
+									}}
+								>
+									Забронировать
+								</button>
 							</div>
 						</div>
 					)).reverse()

@@ -45,7 +45,7 @@ const Notifications = () => {
   return (
     <div className={cls.notifications}>
       {
-        chatBase && chatBase.slice(chatBase.length - 1, chatBase.length).map(({id, name, message}, i) => (
+        chatBase && chatBase.map(({id, name, message}, i) => (
           <div 
             className={cls.message}
             onClick={() => toChat(id)}

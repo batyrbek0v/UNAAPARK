@@ -47,6 +47,7 @@ const NavBar = () => {
             }
           </ul>
         </ul>
+
         {
           users && (
             <User name={users.name[0]} photo={users.photo} /> 
