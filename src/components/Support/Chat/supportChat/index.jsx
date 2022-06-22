@@ -4,6 +4,8 @@ import { RiSendPlaneFill } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
 import { Message } from '../../../../configs/api'
 import { useAuth } from '../../../../providers/useAuth'
+import * as smoothscroll from "smoothscroll-polyfill";
+smoothscroll.polyfill();
 
 const SupportChat = ({ setChatActive }) => {
 
@@ -54,6 +56,8 @@ const SupportChat = ({ setChatActive }) => {
     })
 
     setText('')
+
+    
   }
 
   return (

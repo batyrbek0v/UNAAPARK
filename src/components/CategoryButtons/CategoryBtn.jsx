@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from '../../configs/api'
+import FilteredCars from '../FilteredCars'
 import { CategoryOfCar } from '../utils/Category/Category'
 import cls from './CategoryBtn.module.scss'
 
@@ -12,8 +12,6 @@ import cls from './CategoryBtn.module.scss'
 const CategoryBtn = () => {
 
     const [ category , setCategory ] = React.useState('All')
-
-    localStorage.setItem('route' , category)
 
     return (
         <>
@@ -46,6 +44,8 @@ const CategoryBtn = () => {
                 </select>
 
             </div>
+
+            <FilteredCars category={category} />
         </>
     )
 }

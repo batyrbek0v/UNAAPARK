@@ -5,28 +5,18 @@ import CategoryBtn from '../../CategoryButtons/CategoryBtn'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
-import { API, toBase } from '../../../configs/api'
+import { API, getSavedCars, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
 const Card = () => {
 	const { users } = useAuth()
-	const [carBase, setCarBase] = React.useState()
-	const [base, setBase] = React.useState(null)
+	const [ carBase, setCarBase ] = React.useState()
+	const [ newCarBase, setNewCarBase ] = React.useState()
 
 	React.useEffect(() => {
 		API.get()
 			.then(res => {
-				// const result = Object
-				// 	.entries(res.data && res.data)
-				// 	.map
-				// 	(([key, value]) => {
-				// 		return {
-				// 			id: key,
-				// 			...value
-				// 		}
-				// 	})
-
 				const baseWithID = Object.entries(res.data)
 					.map(item => {
 						const id = item[0]
@@ -38,7 +28,21 @@ const Card = () => {
 				
 				setCarBase(baseWithID)
 			})
-	}, [])
+
+		getSavedCars()
+			.then(res => {
+				const baseWithID = Object.entries(res.data)
+					.map(item => {
+						const id = item[0]
+							return  {
+								...item[1],
+								id
+							}
+						})
+					
+						setNewCarBase(baseWithID)
+				})
+	}, [carBase])
 
 
 
@@ -62,14 +66,16 @@ const Card = () => {
 
 							<div className="card_body">
 								<div className="card_img">
-									<img src={photo ? photo : notImage} alt={title} />
+									<Link to={`/carsmore/${id}`}>
+										<img src={photo ? photo : notImage} alt={title} />
+									</Link>
 								</div>
 								<div className='card_title'>
 									<h4>{title}</h4>
 									<h4>2015</h4>
 									<h4>{price} $ в сутки</h4>
 									<button
-										className='favorites_btn'
+										className='favorites_btn1'
 										onClick={() => {
 											handleFavorite(id)
 										}}
