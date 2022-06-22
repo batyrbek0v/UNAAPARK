@@ -57,16 +57,17 @@
             width: 450px;
         }
 
-        .favorites_btn1 {
-            width: 35px;
-            height: 35px;
-            margin: 0;
-            border: 1px solid black;
-            cursor: pointer;
-            position: absolute;
-            top: 90px;
-        }
         .card_body {
+            .favorites_btn {
+                width: 35px;
+                height: 35px;
+                margin: 0;
+                border: 1px solid black;
+                cursor: pointer;
+                position: absolute;
+                right: 0;
+                top: 90px;
+            }
             @media (min-width:320px) {
                 width: 100%;
                 height: 144px;
@@ -77,6 +78,7 @@
                 left: 0;
                 display: flex;
                 justify-content: space-between;
+
             }
 
             @media (min-width:425px) {
@@ -90,21 +92,21 @@
             }
 
             .card_img {
-                    img {
+                img {
                     @media (min-width:320px) {
-                        width: 60%;
-                        height: 60%;
+                        width: 150px;
+                        height: 100%;
                         object-fit: cover;
                     }
 
                     @media (min-width:768px) {
-                        width: 50%;
-                        height: 50%;
+                        width: 100%;
+                        height: 150px;
                         object-fit: cover;
                     }
                     @media (min-width:1024px) {
-                        width: 60%;
-                        height: 60%;
+                        width: 300px;
+                        height: 150px;
                         object-fit: cover;
                     }
                 }
@@ -194,7 +196,6 @@
                 }
 
             }
-
         }
     }
 }

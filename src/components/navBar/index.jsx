@@ -7,6 +7,7 @@ import { SideBar } from './SideBar'
 import logo from '../images/Logo.png'
 import User from './User'
 import { useAuth } from '../../providers/useAuth'
+import { BsBookmark } from 'react-icons/bs'
 
 const NavBar = () => {
   
@@ -49,10 +50,22 @@ const NavBar = () => {
         </ul>
 
         {
-          users && (
-            <User name={users.name[0]} photo={users.photo} /> 
-          )
+          users && <div className={cls.rightNav}>
+          <div className={cls.save}>
+            <li>
+              <Link to={'/saved'}>
+                <BsBookmark />
+              </Link>
+            </li>
+          </div>
+          <div className={cls.user}>
+            {
+              <User name={users.name[0]} photo={users.photo} /> 
+            }
+          </div>
+        </div>
         }
+
         <div className={users && users ? cls.authNone : cls.auth}>
           <li>
             <Link to={'/auth/login'} >

@@ -5,43 +5,54 @@ import CategoryBtn from '../../CategoryButtons/CategoryBtn'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
-import { API, toBase } from '../../../configs/api'
+import { API, getSavedCars, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
 const Card = () => {
 	const { users } = useAuth()
 	const [ carBase, setCarBase ] = React.useState()
-	const [ base, setBase ] = React.useState(null)
+	const [ newCarBase, setNewCarBase ] = React.useState()
 
 	React.useEffect(() => {
 		API.get()
 			.then(res => {
-				const result = Object
-					.entries(res.data && res.data)
-					.map
-					(([key, value]) => {
-						return {
-							id: key,
-							...value
+				const baseWithID = Object.entries(res.data)
+					.map(item => {
+						const id = item[0]
+						return  {
+							...item[1],
+							id
 						}
 					})
-
-				setCarBase(result)
+				
+				setCarBase(baseWithID)
 			})
-	}, [base])
+
+		getSavedCars()
+			.then(res => {
+				const baseWithID = Object.entries(res.data)
+					.map(item => {
+						const id = item[0]
+							return  {
+								...item[1],
+								id
+							}
+						})
+					
+						setNewCarBase(baseWithID)
+				})
+	}, [carBase])
 
 
 
 
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
-
-		toBase.post(users && users.id, favoriteCar)
-		toBase.post(users && users.id, id, true)
+		console.log(id)
+		toBase.post(users.id, favoriteCar)
 	}
 
-	console.log(base);
 
 	if (!carBase) return <Loader />
 
@@ -64,7 +75,7 @@ const Card = () => {
 									<h4>2015</h4>
 									<h4>{price} $ в сутки</h4>
 									<button
-										className='favorites_btn'
+										className='favorites_btn1'
 										onClick={() => {
 											handleFavorite(id)
 										}}
