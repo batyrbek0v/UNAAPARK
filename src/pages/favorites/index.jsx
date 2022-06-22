@@ -8,6 +8,8 @@ import './Card.scss'
 import cls from './Favorites.module.scss'
 import { BsArrowLeftShort } from 'react-icons/bs'
 
+
+
 const Favorites = () => {
 	const [base, setBase] = React.useState(null)
 	const { users } = useAuth()
