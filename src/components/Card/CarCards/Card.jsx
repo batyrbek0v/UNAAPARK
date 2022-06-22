@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CategoryBtn from '../../CategoryButtons/CategoryBtn'
-// import { CarBase } from '../utils/CarBase/CarBase'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
@@ -9,33 +8,24 @@ import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
+import Alert, { modalAlert } from '../../Alerts'
+
+
 const Card = () => {
 	const { users } = useAuth()
 	const [carBase, setCarBase] = React.useState()
-	const [base, setBase] = React.useState(null)
 
 	React.useEffect(() => {
 		API.get()
 			.then(res => {
-				// const result = Object
-				// 	.entries(res.data && res.data)
-				// 	.map
-				// 	(([key, value]) => {
-				// 		return {
-				// 			id: key,
-				// 			...value
-				// 		}
-				// 	})
-
 				const baseWithID = Object.entries(res.data)
 					.map(item => {
 						const id = item[0]
-						return  {
+						return {
 							...item[1],
 							id
 						}
 					})
-				
 				setCarBase(baseWithID)
 			})
 	}, [])
@@ -45,13 +35,34 @@ const Card = () => {
 
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
-		console.log(id)
-		toBase.post(users.id, favoriteCar)
+
+		if(users){
+			toBase.post(users.id, favoriteCar)
+			modalAlert.isSaved()
+		}else{
+			modalAlert.notSaved()
+		}
 	}
 
+	// const showAlert = () => {
+	// 	users
+	// 		? Swal.fire({
+	// 			title: 'Успешно добавлено',
+	// 			text: 'Do you want to continue',
+	// 			icon: 'success',
+	// 			confirmButtonText: 'Cool'
+	// 		})
+	// 		: Swal.fire({
+	// 			title: 'Не добавлено !',
+	// 			text: 'Чтобы можно было добавлять, вам нужно авторизоваться',
+	// 			icon: 'error',
+	// 			confirmButtonText: '<a href="/auth/login" style="text-decoration:none; color:white;" >Авторизоваться</a>'
+	// 		})
+
+	// }
 
 	if (!carBase) return <Loader />
-
+	
 	return (
 		<>
 			{/* <CategoryBtn />+ */}

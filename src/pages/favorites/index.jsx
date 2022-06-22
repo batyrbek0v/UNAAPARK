@@ -8,6 +8,8 @@ import './Card.scss'
 import Card from '../../components/Card/CarCards/Card'
 import Loader from '../../components/Loader'
 
+
+
 const Favorites = () => {
 	const [base, setBase] = React.useState(null)
 	const [text , setText] = React.useState('hi')
@@ -26,7 +28,6 @@ const Favorites = () => {
 						}
 					})
 					setBase(baseWithID)
-
 				}
 				setText(res.data)
 			})
