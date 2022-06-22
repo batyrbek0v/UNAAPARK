@@ -5,14 +5,13 @@ import CategoryBtn from '../../CategoryButtons/CategoryBtn'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
-import { API, getSavedCars, toBase } from '../../../configs/api'
+import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
 const Card = () => {
 	const { users } = useAuth()
 	const [ carBase, setCarBase ] = React.useState()
-	const [ newCarBase, setNewCarBase ] = React.useState()
 
 	React.useEffect(() => {
 		API.get()
@@ -28,20 +27,6 @@ const Card = () => {
 				
 				setCarBase(baseWithID)
 			})
-
-		getSavedCars()
-			.then(res => {
-				const baseWithID = Object.entries(res.data)
-					.map(item => {
-						const id = item[0]
-							return  {
-								...item[1],
-								id
-							}
-						})
-					
-						setNewCarBase(baseWithID)
-				})
 	}, [carBase])
 
 
