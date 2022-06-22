@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Message } from '../../configs/api'
-import ChatAdmin from '../ChatAdmin'
 import cls from './Notifications.module.scss'
 
 
@@ -12,9 +11,14 @@ const Notifications = () => {
     Message.getFirstMessage()
       .then(res => {
         const result = Object.values(res.data)
-        
-        setChatBase(result)
 
+        var newResult = result && result.filter(item => {
+          if(item.id === item.id){
+            return item
+          }
+        })
+        
+        setChatBase(newResult)
       })
     }, [chatBase])
     
@@ -25,18 +29,33 @@ const Notifications = () => {
       navigate('/chat')
     }
 
+  // const send = () => {
+  //   const time = new Date()
+
+  //   Message.post( users.id, {
+  //     message: text, 
+  //     answer: true,
+  //     times: {
+  //       hour: time.getHours(),
+  //       minute: time.getMinutes()  
+  //     }
+  //   })
+  // }
+
   return (
-    <div>
+    <div className={cls.notifications}>
       {
-        chatBase && chatBase.map(({id, name, message}) => (
+        chatBase && chatBase.map(({id, name, message}, i) => (
           <div 
             className={cls.message}
             onClick={() => toChat(id)}
+            key={i}
           >
+            
             <p>{name}</p>
             <p>{message}</p>
           </div>
-        ))
+        ))  
       }
     </div>
   )

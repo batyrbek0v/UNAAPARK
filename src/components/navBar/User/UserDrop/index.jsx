@@ -4,6 +4,7 @@ import { auth, handleSignOut } from '../../../../firebase/firebase'
 import { useAuth } from '../../../../providers/useAuth'
 import cls from './UserDrop.module.scss'
 import { UserDrop_list } from './UserDrop_list'
+import userDefaultAva from '../../../images/defaultUserAvatar.png'
 
 const UserDrop = ({ sideActive, setSideActive, name }) => {
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { NavBar_utils } from '../../utils/navBar_utils'
 import { IoMdClose } from 'react-icons/io'
-import { BiPlusCircle } from 'react-icons/bi' 
 import cls from './sidebar.module.scss'
 import User from '../User'
 

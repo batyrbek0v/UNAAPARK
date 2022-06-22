@@ -5,6 +5,7 @@ import { IoReturnUpBack } from 'react-icons/io5'
 import { API } from '../../configs/api'
 import Loader from '../../components/Loader'
 import notCar from '../../components/images/notCar.png'
+import Review from './Review'
 
 
 const CarsMore = () => {
@@ -32,7 +33,6 @@ const CarsMore = () => {
     console.log(dataBase);
     if (!base) return <Loader />
 
-
     return (
         <>
             <div className={cls.container}>
@@ -43,7 +43,7 @@ const CarsMore = () => {
                     <div className={cls.card_body}>
                         <h1>{base.title}</h1>
                         <ul className={cls.card_list}>
-                            <li><span>Коробка передач: </span>{base.transmission}</li>
+                            <li><span>Коробка передачи: </span>{base.transmission}</li>
                             <li><span>Тип кузова:</span> {base.type}</li>
                             <li><span>Объем двигателя:</span> {base.fuel}</li>
                             <li><span>Цвет машины:</span> {base.color}</li>
@@ -64,6 +64,8 @@ const CarsMore = () => {
                 <div className={cls.buttons2}>
                     <Link to={'/cars'} className={cls.btn2}><IoReturnUpBack /></Link>
                 </div>
+
+                <Review />
             </div>
 
         </>

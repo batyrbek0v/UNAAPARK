@@ -4,7 +4,7 @@ import CategoryBtn from '../../CategoryButtons/CategoryBtn'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
-import { API, toBase } from '../../../configs/api'
+import { API, getSavedCars, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
@@ -13,7 +13,8 @@ import Alert, { modalAlert } from '../../Alerts'
 
 const Card = () => {
 	const { users } = useAuth()
-	const [carBase, setCarBase] = React.useState()
+	const [ carBase, setCarBase ] = React.useState()
+	// const [ newCarBase, setNewCarBase ] = React.useState()
 
 	React.useEffect(() => {
 		API.get()
@@ -28,7 +29,7 @@ const Card = () => {
 					})
 				setCarBase(baseWithID)
 			})
-	}, [])
+	}, [carBase])
 
 
 
@@ -44,23 +45,6 @@ const Card = () => {
 		}
 	}
 
-	// const showAlert = () => {
-	// 	users
-	// 		? Swal.fire({
-	// 			title: 'Успешно добавлено',
-	// 			text: 'Do you want to continue',
-	// 			icon: 'success',
-	// 			confirmButtonText: 'Cool'
-	// 		})
-	// 		: Swal.fire({
-	// 			title: 'Не добавлено !',
-	// 			text: 'Чтобы можно было добавлять, вам нужно авторизоваться',
-	// 			icon: 'error',
-	// 			confirmButtonText: '<a href="/auth/login" style="text-decoration:none; color:white;" >Авторизоваться</a>'
-	// 		})
-
-	// }
-
 	if (!carBase) return <Loader />
 	
 	return (
@@ -73,14 +57,16 @@ const Card = () => {
 
 							<div className="card_body">
 								<div className="card_img">
-									<img src={photo ? photo : notImage} alt={title} />
+									<Link to={`/carsmore/${id}`}>
+										<img src={photo ? photo : notImage} alt={title} />
+									</Link>
 								</div>
 								<div className='card_title'>
 									<h4>{title}</h4>
 									<h4>2015</h4>
 									<h4>{price} $ в сутки</h4>
 									<button
-										className='favorites_btn'
+										className='favorites_btn1'
 										onClick={() => {
 											handleFavorite(id)
 										}}

@@ -2,18 +2,19 @@ import React from 'react'
 import { getSavedCars, removeSavedCar } from '../../configs/api'
 import { useAuth } from '../../providers/useAuth'
 import { MdClose } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import notImage from '../../components/images/notCar.png'
 import './Card.scss'
-import Card from '../../components/Card/CarCards/Card'
-import Loader from '../../components/Loader'
+import cls from './Favorites.module.scss'
+import { BsArrowLeftShort } from 'react-icons/bs'
 
 
 
 const Favorites = () => {
 	const [base, setBase] = React.useState(null)
-	const [text , setText] = React.useState('hi')
 	const { users } = useAuth()
+
+	const navigate = useNavigate()
 
 	React.useEffect(() => {
 		getSavedCars(users && users.id)
@@ -29,63 +30,73 @@ const Favorites = () => {
 					})
 					setBase(baseWithID)
 				}
-				setText(res.data)
 			})
-	}, [ text])
+	}, [base])
 
 
 	const handleRemoveCar = (id) => {
 		removeSavedCar(users.id, id)
-		setText('Delete')
 	}
 
-
-	if (base == null) return <h3>Вы еще ничего не сохраняли 😃</h3>
-
-	if (!base) return <Loader />
 	return (
-		<div className='savedCars'>
-			<h1>Ваши сохраненные машины</h1>
-			<div className='card_container'>
-				{
-					base && base.map(({ id, title, photo, price } , index) => (
-						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-							<div className="card_body">
-								<div className="card_img">
-									<img src={photo ? photo : notImage} alt={title} />
-								</div>
-								<div className='card_title'>
-									<h4>{title}</h4>
-									<h4>2015</h4>
-									<h4>{price} $ в сутки</h4>
-								</div>
-								<button
-									className='favorites_btn'
-									onClick={e => {
-										e.preventDefault()
-										handleRemoveCar(id)
-									}}
-								>
-									<MdClose />
-								</button>
-							</div>
+		<React.Fragment>
+			{
+				base ? <div className={cls.savedCars}>
+					<h1>Ваши сохраненные машины</h1>
+					<div className='card_container'>
+						{
+							base && base.map(({ id, title, photo, price } , index) => (
+								<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+									<div className="card_body">
+										<div className="card_img">
+											<img src={photo ? photo : notImage} alt={title} />
+										</div>
+										<div className='card_title'>
+											<h4>{title}</h4>
+											<h4>2015</h4>
+											<h4>{price} $ в сутки</h4>
+										</div>
+										<button
+											className='favorites_btn'
+											onClick={e => {
+												e.preventDefault()
+												handleRemoveCar(id)
+											}}
+										>
+											<MdClose />
+										</button>
+									</div>
 
-							<div className="card_footer">
-								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-								<button
-									className='card_footer_btn'
-									onClick={() => {
-										window.open('https://t.me/sattarzanov')
-									}}
-								>
-									Забронировать
-								</button>
-							</div>
-						</div>
-					)).reverse()
-				}
-			</div>
-		</div>
+									<div className="card_footer">
+										<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
+										<button
+											className='card_footer_btn'
+											onClick={() => {
+												window.open('https://t.me/sattarzanov')
+											}}
+										>
+											Забронировать
+										</button>
+									</div>
+								</div>
+							)).reverse()
+						}
+					</div>
+				</div> 
+					: 
+				<div className={cls.savesIsHavent}>
+					<h3>
+						Закладок нет!
+					</h3>
+					<p>Вероятнее всего, вы ничего не добавляли в закладки</p>
+
+					<button onClick={() => navigate('/cars')}>
+						<BsArrowLeftShort />
+						Вернуться назад
+					</button>
+				</div>
+			}
+		</React.Fragment>
 	)
 }
 
