@@ -4,9 +4,11 @@ import { useAuth } from '../../providers/useAuth'
 import { MdClose } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import notImage from '../../components/images/notCar.png'
-import './Card.scss'
+import './Card.scss'		
 import cls from './Favorites.module.scss'
 import { BsArrowLeftShort } from 'react-icons/bs'
+
+
 
 const Favorites = () => {
 	const [base, setBase] = React.useState(null)

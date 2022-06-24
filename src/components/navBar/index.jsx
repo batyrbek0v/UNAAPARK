@@ -8,18 +8,31 @@ import logo from '../images/Logo.png'
 import User from './User'
 import { useAuth } from '../../providers/useAuth'
 import { BsBookmark } from 'react-icons/bs'
+import { getSavedCars } from '../../configs/api'
 
 const NavBar = () => {
-  
-  const data = JSON.parse(localStorage.getItem('data'))
-
   const [sideActive, setSideActive] = React.useState(false)
+  const [database, setDatabase] = React.useState(null)
 
   const [listIndex, setListIndex] = React.useState(1)
 
   const { users } = useAuth()
 
-  
+  React.useEffect(() => {
+    getSavedCars(users && users.id)
+      .then(res => {
+        const result = Object.entries(res.data)
+          .map(([key, value]) => {
+            return {
+              id: key,
+              ...value
+            }
+          })
+
+        setDatabase(result)
+      })
+  })  
+   
   // const [ sideActive , setSideActive ] = React.useState(false)
   // const [ listIndex, setListIndex ] = React.useState()
   
@@ -52,6 +65,9 @@ const NavBar = () => {
         {
           users && <div className={cls.rightNav}>
           <div className={cls.save}>
+            <div className={cls.count}>
+              <span>{database ? database.length === 0 ? '0' : database.length : '0'}</span>
+            </div>
             <li>
               <Link to={'/saved'}>
                 <BsBookmark />

@@ -1,10 +1,10 @@
 import React from 'react'
-import Card from '../../components/Card/CarCards/Card'
+import Sort from '../../components/Sort'
 
 const Cars = () => {
 	return (
 		<>
-			<Card />
+			<Sort />
 		</>
 	)
 }

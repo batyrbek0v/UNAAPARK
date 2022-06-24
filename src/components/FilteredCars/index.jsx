@@ -50,8 +50,6 @@ const FilteredCars = ({searchBase}) => {
 		toBase.post(users.id, favoriteCar)
 	}
 
-	console.log(base);
-
 	if (!CarBase) return <Loader />
   return (
     <div>

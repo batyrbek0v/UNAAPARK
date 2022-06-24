@@ -1,51 +1,31 @@
 import React from 'react'
-import FilteredCars from '../FilteredCars'
-import { CategoryOfCar } from '../utils/Category/Category'
+import Card from '../Card/CarCards/Card'
+import { marks } from '../utils/Marks'
 import cls from './CategoryBtn.module.scss'
-
-
-// getProduct().map(item => <Card key={item.id} base={item} type={item.status} />)
-// console.log(route)
-
 
 
 const CategoryBtn = () => {
 
-    const [ category , setCategory ] = React.useState('All')
+    const [ category , setCategory ] = React.useState()
 
     return (
         <>
             <div className={cls.container}>
                 {
-                    CategoryOfCar.map(({ title, route }, index) => (
+                    marks.map(({id, title, path }) => (
                         <button
                             className={cls.btn}
-                            key={index}
+                            key={id}
                             onClick={() => {
-                                setCategory(route)
+                                setCategory(path.toUpperCase())
                             }}
                         >
                             {title}
                         </button>
                     ))
                 }
-                <select>
-                    {
-                        CategoryOfCar.map(({ title, route }, index) => (
-                            <option
-                                key={index}
-                                value={route}
-                                // onClick={() => navigate(`/cars/${route}`)}
-                                >
-                                {title}
-                            </option>
-                        ))
-                    }
-                </select>
-
             </div>
 
-            <FilteredCars category={category} />
         </>
     )
 }

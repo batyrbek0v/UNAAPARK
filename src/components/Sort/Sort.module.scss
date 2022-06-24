@@ -1,0 +1,26 @@
+.filter{
+  .filtration{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      width: 90%;
+      padding: 0 5%;
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+  .sort{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    span{
+      color: #5C5CD6;
+      text-decoration: underline;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CategoryBtn from '../../CategoryButtons/CategoryBtn'
-// import { CarBase } from '../utils/CarBase/CarBase'
 import notImage from '../../images/notCar.png'
 import './Card.scss'
 import Loader from '../../Loader'
@@ -9,7 +7,10 @@ import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
-const Card = () => {
+import { modalAlert } from '../../Alerts'
+
+
+const Card = ({category}) => {
 	const { users } = useAuth()
 	const [ carBase, setCarBase ] = React.useState()
 
@@ -19,36 +20,39 @@ const Card = () => {
 				const baseWithID = Object.entries(res.data)
 					.map(item => {
 						const id = item[0]
-						return  {
+						return {
 							...item[1],
 							id
 						}
 					})
-				
 				setCarBase(baseWithID)
 			})
-	}, [carBase])
 
-
-
+		}, [carBase])
 
 	const handleFavorite = (id) => {
+		console.log(id);
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
-		console.log(id)
-		toBase.post(users.id, favoriteCar)
-	}
 
+		if(users){
+			toBase.post(users.id, favoriteCar)
+			toBase.isSaved(users.id, id, true)
+			modalAlert.isSaved()
+		}else{
+			modalAlert.notSaved()
+		}
+	}
 
 	if (!carBase) return <Loader />
 
+	// const base = carBase && carBase.filter(item => item && item.title.includes(mark))
+	
 	return (
 		<>
-			{/* <CategoryBtn />+ */}
 			<div className='card_container'>
 				{
-					carBase && carBase.map(({ id, title, photo, price }) => (
+					carBase && carBase.map(({ id, title, photo, price, isSaved  }) => (
 						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-
 							<div className="card_body">
 								<div className="card_img">
 									<Link to={`/carsmore/${id}`}>
@@ -61,6 +65,7 @@ const Card = () => {
 									<h4>{price} $ в сутки</h4>
 									<button
 										className='favorites_btn1'
+										disabled={isSaved ? true : false}
 										onClick={() => {
 											handleFavorite(id)
 										}}
