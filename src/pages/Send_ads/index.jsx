@@ -5,8 +5,12 @@ import cls from './ads.module.scss'
 
 const Send_Ads = () => {
   const [base, setBase] = React.useState(null)
-  const [mark, setMark] = React.useState('')
+
+  const [brand, setBrand] = React.useState('')
+  const [model, setModel] = React.useState('')
+  const [title, setTitle] = React.useState('')
   const [photo, setPhoto] = React.useState('')
+  const [year, setYear] = React.useState('')
   const [transmission, setTransmission] = React.useState('')
   const [type, setType] = React.useState('')
   const [fuel, setFuel] = React.useState('')
@@ -17,15 +21,17 @@ const Send_Ads = () => {
 
   const send = () => {
     setBase({
-      title: mark,
-      photo: photo,
-      transmission: transmission,
-      type: type,
-      fuel: fuel,
-      color: color,
-      gas: gas,
-      category: category,
-      price: price,
+      title,
+      model,
+      year,
+      photo,
+      transmission,
+      type,
+      fuel,
+      color,
+      gas,
+      category,
+      price,
     })
 
     API.post(base)
@@ -38,10 +44,19 @@ const Send_Ads = () => {
         <div className={cls.ads}>
           <h1>Подать объявление</h1>
           <div>
-            <input type="text" placeholder='Марка машины' onChange={e => setMark(e.target.value)} />
+            <input type="text" placeholder='Maрка машины' onChange={e => setTitle(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder='Модель машины' onChange={e => setModel(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder='Год выпуска' onChange={e => setYear(e.target.value)} />
           </div>
           <div>
             <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder="Цвет машины" onChange={e => setColor(e.target.value)} />
           </div>
           <div>
             <input type="text" placeholder='Коробка передачи' onChange={e => setTransmission(e.target.value)} />
@@ -50,9 +65,20 @@ const Send_Ads = () => {
             <input type="text" placeholder='Объем двигателя' onChange={e => setFuel(e.target.value)} />
           </div>
           <div>
+            <input type="text" placeholder='Цена' onChange={e => setPrice(e.target.value)} />
+          </div>
+          <div>
+            <select onChange={e => setGas(e.target.value)}>
+              <option selected disabled>Тип топлива</option>
+              <option value="Бензин">Бензин</option>
+              <option value="Дизель">Дизель</option>
+              <option value="Газ">Газ</option>
+              <option value="Электро">Электро</option>
+            </select>
+          </div>
+          <div>
             <select onChange={e => setType(e.target.value)}>
               <option selected disabled>Кузов</option>
-              <option value="Все">Все</option>
               <option value="Седан">Седан</option>
               <option value="Внедорожник">Внедорожник</option>
               <option value="Купе">Купе</option>
@@ -64,21 +90,22 @@ const Send_Ads = () => {
             </select>
           </div>
           <div>
-            <input type="text" placeholder="Цвет машины" onChange={e => setColor(e.target.value)} />
+            <select onChange={e => setCategory(e.target.value)}>
+              <option selected disabled>Категория</option>
+              <option value="Econom">Econom</option>
+              <option value="Businnes">Businnes</option>
+              <option value="VIP">VIP</option>
+              <option value="Premuim">Premuim</option>
+            </select>
           </div>
-          <div>
-            <input type="text" placeholder="Тип топлива" onChange={e => setGas(e.target.value)} />
-          </div>
-          <div>
-            <input type="text" placeholder="Категория" onChange={e => setCategory(e.target.value)} />
-          </div>
-          <div>
-            <input type="text" placeholder='Цена' onChange={e => setPrice(e.target.value)} />
-          </div>
-          <button onClick={() => {
+          <button onClick={e => {
+            e.preventDefault()
             send()
 
-          }}>Добавить</button>
+          }}
+          >
+            Добавить
+          </button>
         </div>
       </div>
     </>

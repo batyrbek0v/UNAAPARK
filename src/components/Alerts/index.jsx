@@ -1,21 +1,41 @@
 import Swal from 'sweetalert2'
 
 export const modalAlert = {
-  isSaved: () => {
-    return Swal.fire({
-      title: 'Успешно добавлено',
-      text: 'Do you want to continue',
-      icon: 'success',
-      confirmButtonText: 'Cool'
+  isSaved: (title, icon,) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    return Toast.fire({
+      title: `${title}`,
+      icon: `${icon}`,
+      color:'#3B4FF9',
     })
   },
-  notSaved: () => {
+  // isSaved: (title, text, icon, btn) => {
+  //   return Swal.fire({
+  //     title: `${title}`,
+  //     text: `${text}`,
+  //     icon: `${icon}`,
+  //     confirmButtonText: `${btn}`
+  //   })
+  // },
+  notSaved: (title, text, icon, btn) => {
     return Swal.fire({
-      title: 'Не добавлено !',
-      text: 'Чтобы можно было добавлять, вам нужно авторизоваться',
-      icon: 'error',
-      confirmButtonText: '<a href="/auth/login" style="text-decoration:none; color:white;" >Авторизоваться</a>'
+      title: `${title}`,
+      text: `${text}`,
+      icon: `${icon}`,
+      confirmButtonText: `${btn}`
     })
   },
 }
+
 

@@ -13,7 +13,10 @@ import Alert, { modalAlert } from '../../Alerts'
 
 const Card = () => {
 	const { users } = useAuth()
-	const [ carBase, setCarBase ] = React.useState()
+
+
+	const {cards} = useAuth()
+	const [carBase, setCarBase] = React.useState()
 	// const [ newCarBase, setNewCarBase ] = React.useState()
 
 	React.useEffect(() => {
@@ -31,30 +34,40 @@ const Card = () => {
 			})
 	}, [carBase])
 
-
-
+	console.log(carBase);
 
 	const handleFavorite = (id) => {
 		const favoriteCar = carBase && carBase.find(item => item.id === id)
+		if(!favoriteCar) {
+			modalAlert.isSaved('Эту машину вы уже добавили !', 'error',)
+			console.log('error');
 
-		if(users){
-			toBase.post(users.id, favoriteCar)
-			modalAlert.isSaved()
 		}else{
-			modalAlert.notSaved()
+			console.log('error');
 		}
+		if (users) {
+			toBase.post(users.id, favoriteCar)
+			modalAlert.isSaved('Успешно добавлено !', 'success',)
+		} else {
+			modalAlert.notSaved(
+				'Не добавлено !',
+				'Чтобы можно было добавлять, вам нужно авторизоваться',
+				'error',
+				'<a href="/auth/login" style="text-decoration:none; color:white;" >Авторизоваться</a>',
+			)
+		}
+
 	}
 
 	if (!carBase) return <Loader />
-	
+
 	return (
 		<>
 			{/* <CategoryBtn />+ */}
 			<div className='card_container'>
 				{
-					carBase && carBase.map(({ id, title, photo, price }) => (
+					carBase && carBase.map(({ id, model, title, year, photo, price }) => (
 						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-
 							<div className="card_body">
 								<div className="card_img">
 									<Link to={`/carsmore/${id}`}>
@@ -62,8 +75,9 @@ const Card = () => {
 									</Link>
 								</div>
 								<div className='card_title'>
-									<h4>{title}</h4>
-									<h4>2015</h4>
+									<h1>{title}</h1>
+									<h2>{model}</h2>
+									<h4>{year}</h4>
 									<h4>{price} $ в сутки</h4>
 									<button
 										className='favorites_btn1'
