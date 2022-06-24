@@ -34,7 +34,7 @@
                 padding: 14px 4px;
                 background-color: #3B4FF9;
                 color: white;
-                border-radius: 20px;
+                border-radius: 8px;
                 list-style: none;
                 cursor: pointer;
             }
@@ -53,7 +53,7 @@
 
             h1 {
                 @media (min-width:320px) {
-                    font-size: 25px;
+                    font-size: 28px;
                 }
                 @media (min-width:1024px) {
                     font-size: 40px;

@@ -16,11 +16,11 @@ const EmailRegist = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
-
+    
     return (
         <React.Fragment>
             <div className={cls.login}>
-                <form>
+                 <form>
                     <h1>Регистрация</h1>
                     <FormInput
                         type={'text'}

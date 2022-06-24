@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaEnvelope, FaUser } from 'react-icons/fa'
 import { BsFillBookmarkFill } from 'react-icons/bs'
-import { MdOutlineKeyboardArrowRight , MdArrowBackIosNew} from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight, MdArrowBackIosNew } from 'react-icons/md'
 import { RiLogoutBoxFill } from 'react-icons/ri'
+import { IoReturnUpBack } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 import { useAuth } from '../../../providers/useAuth'
@@ -27,9 +28,14 @@ const ProfileCard = () => {
     const randomColor = '#' + Math.random().toString(16).slice(2, 8)
 
     setHEX(randomColor)
+    if (!users) return navigate('/')
   }, [])
 
-  if (!users) return navigate('/')
+
+  const sign = () => {
+    users && handleSignOut()  
+    users && window.location.reload()  
+  }
 
   return (
     <div>
@@ -71,10 +77,7 @@ const ProfileCard = () => {
           </Link>
           <button
             className={cls.btn}
-            onClick={() => {
-              window.location.reload()
-              handleSignOut()
-            }}
+            onClick={() => sign()}
           >
             <span>
               <p><RiLogoutBoxFill /></p>
@@ -83,7 +86,7 @@ const ProfileCard = () => {
           </button>
           <Link to={'/'} className={cls.back}>
             <span>
-              <MdArrowBackIosNew/>
+              <IoReturnUpBack />
             </span>
           </Link>
         </div>

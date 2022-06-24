@@ -27,10 +27,11 @@
     button{
       background: #3B4FF9;
       color: white;
-      transition: .5s;
+      transition: .3s;
+      border: 1px solid #3B4FF9;
       &:hover{
         background: none;
-        color: black;
+        color: #3B4FF9;
       }
     }
   }

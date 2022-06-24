@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import cls from '../../Register/EmailRegist/EmailRegist.module.scss'
 import FormInput from '../../../components/FormInput/FormInput'
 import GoogleAuth from '../GoogleAuth/GoogleAuth'
-import FormButtons from '../../../components/FormButton/FormButtons'
 import { handleLoginWithEmail } from '../../../firebase/firebase'
+import { useAuth } from '../../../providers/useAuth'
+import { modalAlert } from '../../../components/Alerts'
 
 
 
@@ -14,6 +15,13 @@ const EmailLogin = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { users } = useAuth()
+
+
+    const signIn = () => {
+        handleLoginWithEmail(email, password)
+        modalAlert.isSaved('Вы успешно вошли в аккаунт!' ,'success')
+    }
 
     return (
         <React.Fragment>
@@ -38,7 +46,7 @@ const EmailLogin = () => {
                         className={cls.button}
                         onClick={e => {
                             e.preventDefault()
-                            handleLoginWithEmail(email, password)
+                            signIn()
                         }}
                     >
                         Войти

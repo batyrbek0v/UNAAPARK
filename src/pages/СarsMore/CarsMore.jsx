@@ -17,20 +17,22 @@ const CarsMore = () => {
     React.useEffect(() => {
         API.get()
             .then(res => {
-                const result = Object.entries(res.data).map(([key, value]) => {
-                    return {
-                        id: key,
-                        ...value
-                    }
-                })
+                const result = Object
+                    .entries(res.data)
+                    .map(([key, value]) => {
+                        return {
+                            id: key,
+                            ...value
+                        }
+                    })
 
                 setDataBase(result)
                 result.filter(item => item.id === id ? setBase(item) : '')
             })
 
     }, [])
-    
-    console.log(dataBase);
+
+
     if (!base) return <Loader />
 
     return (
@@ -42,6 +44,7 @@ const CarsMore = () => {
                     </div>
                     <div className={cls.card_body}>
                         <h1>{base.title}</h1>
+                        <h2>{base.model}</h2>
                         <ul className={cls.card_list}>
                             <li><span>Коробка передачи: </span>{base.transmission}</li>
                             <li><span>Тип кузова:</span> {base.type}</li>
@@ -60,11 +63,9 @@ const CarsMore = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={cls.buttons2}>
                     <Link to={'/cars'} className={cls.btn2}><IoReturnUpBack /></Link>
                 </div>
-
                 <Review />
             </div>
 

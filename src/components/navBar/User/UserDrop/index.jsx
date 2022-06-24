@@ -10,6 +10,11 @@ const UserDrop = ({ sideActive, setSideActive, name }) => {
 
   const { users } = useAuth()
 
+  const sign = () => {
+    users && handleSignOut()  
+    users && window.location.reload()  
+  }
+
   return (
     <div className={sideActive ? cls.userDrop : cls.none}>
       <div className={cls.username}>
@@ -38,12 +43,9 @@ const UserDrop = ({ sideActive, setSideActive, name }) => {
           ))
         }
         <li
-          onClick={() => {
-            window.location.reload()
-            handleSignOut()
-          }}
+          onClick={() => sign()}
         >
-          <Link to=''>
+          <Link to='/'>
             Выйти
           </Link>
         </li>
