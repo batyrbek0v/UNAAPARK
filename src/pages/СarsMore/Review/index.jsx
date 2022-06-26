@@ -94,7 +94,7 @@ const Review = () => {
           <div className={cls.addReview}>
             <input
               type="text"
-              placeholder='Ваш отзыв'
+              placeholder='Напишите отзыв'
               value={text}
               onChange={e => setText(e.target.value)}
             />

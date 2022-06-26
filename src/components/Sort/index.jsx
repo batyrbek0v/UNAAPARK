@@ -70,7 +70,6 @@ const Sort = () => {
         </div>
       </div>
 
-      <Card base={base} sortValue={sortValue} />
     </React.Fragment>
   )
 }
