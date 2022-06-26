@@ -11,6 +11,7 @@ import ProgressCircle from '../../components/ProgressCircle/ProgressCircle'
 import BetweenTitle from '../../components/TitleForStatics/BetweenTitle'
 import Static from '../../components/Static'
 import { useCard } from '../../components/hooks/useCard'
+import Slider from '../../components/Slider/Slider'
 
 
 const CarsMore = () => {
@@ -37,14 +38,11 @@ const CarsMore = () => {
     }, [])
 
     if (!base) return <Loader />
-
     return (
         <>
+            <Slider img={base.photo} />
             <div className={cls.container}>
                 <div className={cls.cars_card}>
-                    <div className={cls.card_image}>
-                        <img src={base.photo ? base.photo : notCar} alt={base.title} />
-                    </div>
                     <div className={cls.card_body}>
                         <h1>{base.title}</h1>
                         <h2>{base.model}</h2>
@@ -77,7 +75,6 @@ const CarsMore = () => {
                 </div>
                 <Review />
             </div>
-
         </>
     )
 }
