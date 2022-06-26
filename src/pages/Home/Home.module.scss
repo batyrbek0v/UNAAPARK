@@ -9,7 +9,11 @@
     align-items: center;
     padding: 0 5%;
     background: #3B4FF9;
+    @media (min-width: 320px) {
+      height: 70vh;
+    }
     @media (min-width: 1024px) {
+      height: 50vh;
       display: flex;
       justify-content: space-between;
       align-items: center;

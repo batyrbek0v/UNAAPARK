@@ -2,7 +2,7 @@ import React from 'react'
 import { CategoryOfCar } from '../../utils/Category/Category'
 import cls from './SortSide.module.scss'
 
-const SortSide = ({sideActive, setSideActive,  setSortValue, setSortCategory}) => {
+const SortSide = ({sideActive, setSideActive,  setSortValue, setSortText}) => {
 
   const [ category, setCategory ] = React.useState('')
 
@@ -18,7 +18,7 @@ const SortSide = ({sideActive, setSideActive,  setSortValue, setSortCategory}) =
             <p onClick={() => {
               setCategory(route)
               setSideActive(!sideActive)
-              setSortCategory(route)
+              setSortText(title)
             }}>{title}</p>
           </div>
         ))

@@ -1,7 +1,6 @@
 import React from 'react'
 import SortSide from './SortSide'
 import cls from './Sort.module.scss'
-import Card from '../Card/CarCards/Card'
 import { marks } from '../utils/Marks'
 import { API } from '../../configs/api'
 
@@ -25,6 +24,7 @@ const Sort = () => {
         setDatabase(result)
       })
 
+
     console.log(category);
       const result = database && database.filter(item => {
         if(item.title === category){
@@ -35,7 +35,7 @@ const Sort = () => {
       setBase(result)
       console.log(result);
     }, [category])
-    
+
   return (
     <React.Fragment>
       <div className={cls.filter}>

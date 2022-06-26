@@ -13,7 +13,7 @@ const Static = () => {
         <BetweenTitle color="black" />
         <div className={cls.stat_block}>
           {
-            <ProgressCircle percentage={240} article="км" />
+            <ProgressCircle percentage={400} article="км" />
           }
           <p>МАХ.Скорость</p>
         </div>
