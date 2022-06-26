@@ -9,42 +9,16 @@ import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 
 import Alert, { modalAlert } from '../../Alerts'
+import { useCard } from '../../hooks/useCard'
 
 
-const Card = () => {
+const Card = ({ base, error }) => {
+
 	const { users } = useAuth()
 
-
-	const {cards} = useAuth()
-	const [carBase, setCarBase] = React.useState()
-	// const [ newCarBase, setNewCarBase ] = React.useState()
-
-	React.useEffect(() => {
-		API.get()
-			.then(res => {
-				const baseWithID = Object.entries(res.data)
-					.map(item => {
-						const id = item[0]
-						return {
-							...item[1],
-							id
-						}
-					})
-				setCarBase(baseWithID)
-			})
-	}, [carBase])
-
-	console.log(carBase);
-
 	const handleFavorite = (id) => {
-		const favoriteCar = carBase && carBase.find(item => item.id === id)
-		if(!favoriteCar) {
-			modalAlert.isSaved('Эту машину вы уже добавили !', 'error',)
-			console.log('error');
+		const favoriteCar = base && base.find(item => item.id === id)
 
-		}else{
-			console.log('error');
-		}
 		if (users) {
 			toBase.post(users.id, favoriteCar)
 			modalAlert.isSaved('Успешно добавлено !', 'success',)
@@ -59,49 +33,50 @@ const Card = () => {
 
 	}
 
-	if (!carBase) return <Loader />
+	if (!base) return <Loader />
 
 	return (
 		<>
-			{/* <CategoryBtn />+ */}
 			<div className='card_container'>
 				{
-					carBase && carBase.map(({ id, model, title, year, photo, price }) => (
-						<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-							<div className="card_body">
-								<div className="card_img">
-									<Link to={`/carsmore/${id}`}>
-										<img src={photo ? photo : notImage} alt={title} />
-									</Link>
+					base
+						? base.map(({ id, model, title, year, photo, price }) => (
+							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+								<div className="card_body">
+									<div className="card_img">
+										<Link to={`/carsmore/${id}`}>
+											<img src={photo ? photo : notImage} alt={title} />
+										</Link>
+									</div>
+									<div className='card_title'>
+										<h1>{title}</h1>
+										<h2>{model}</h2>
+										<h4>{year}</h4>
+										<h4>{price} $ в сутки</h4>
+										<button
+											className='favorites_btn1'
+											onClick={() => {
+												handleFavorite(id)
+											}}
+										>
+											<BsBookmark />
+										</button>
+									</div>
 								</div>
-								<div className='card_title'>
-									<h1>{title}</h1>
-									<h2>{model}</h2>
-									<h4>{year}</h4>
-									<h4>{price} $ в сутки</h4>
+								<div className="card_footer">
+									<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
 									<button
-										className='favorites_btn1'
+										className='card_footer_btn'
 										onClick={() => {
-											handleFavorite(id)
+											window.open('https://t.me/sattarzanov')
 										}}
 									>
-										<BsBookmark />
+										Забронировать
 									</button>
 								</div>
 							</div>
-							<div className="card_footer">
-								<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-								<button
-									className='card_footer_btn'
-									onClick={() => {
-										window.open('https://t.me/sattarzanov')
-									}}
-								>
-									Забронировать
-								</button>
-							</div>
-						</div>
-					)).reverse()
+						))
+						: <h1>{error}</h1>
 				}
 			</div>
 		</>

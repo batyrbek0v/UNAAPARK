@@ -6,11 +6,15 @@ import { API } from '../../configs/api'
 import Loader from '../../components/Loader'
 import notCar from '../../components/images/notCar.png'
 import Review from './Review'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import ProgressCircle from '../../components/ProgressCircle/ProgressCircle'
+import BetweenTitle from '../../components/TitleForStatics/BetweenTitle'
+import Static from '../../components/Static'
+import { useCard } from '../../components/hooks/useCard'
 
 
 const CarsMore = () => {
     const { id } = useParams()
-
     const [base, setBase] = React.useState(null)
     const [dataBase, setDataBase] = React.useState(null)
 
@@ -32,7 +36,6 @@ const CarsMore = () => {
 
     }, [])
 
-
     if (!base) return <Loader />
 
     return (
@@ -46,6 +49,7 @@ const CarsMore = () => {
                         <h1>{base.title}</h1>
                         <h2>{base.model}</h2>
                         <ul className={cls.card_list}>
+                            <li><span>Год выпуска: </span>{base.year}</li>
                             <li><span>Коробка передачи: </span>{base.transmission}</li>
                             <li><span>Тип кузова:</span> {base.type}</li>
                             <li><span>Объем двигателя:</span> {base.fuel}</li>
@@ -54,15 +58,20 @@ const CarsMore = () => {
                         </ul>
                         <div className={cls.list_price}>
                             <p>Цена: </p>
-                            <span>{base.price} $</span> / сутки
+                            <span>{base.price} $</span>
+                            <p>/ сутки</p>
                         </div>
                         <div className={cls.buttons}>
                             <button className={cls.btn} onClick={() => {
                                 window.open('https://t.me/sattarzanov')
-                            }}>Забронировать</button>
+                            }}
+                            >
+                                Забронировать
+                            </button>
                         </div>
                     </div>
                 </div>
+                <Static />
                 <div className={cls.buttons2}>
                     <Link to={'/cars'} className={cls.btn2}><IoReturnUpBack /></Link>
                 </div>
