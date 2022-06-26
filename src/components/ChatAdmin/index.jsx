@@ -2,6 +2,7 @@ import React from 'react'
 import { Message } from '../../configs/api'
 import cls from './ChatAdmin.module.scss'
 import { RiSendPlaneFill } from 'react-icons/ri'
+import { modalAlert } from '../Alerts'
 
 
 const ChatAdmin = () => {
@@ -27,7 +28,7 @@ const ChatAdmin = () => {
   const send = () => {
     const time = new Date()
 
-    Message.post(id, {
+    text.length === 0 ? modalAlert.emptyArea() : Message.post(id, {
       message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
       answer: true,
       times: {
@@ -40,57 +41,59 @@ const ChatAdmin = () => {
   }
 
   return (
-    <div className={cls.support}>
-      <div className={cls.support_head}>
-        <div className={cls.left}>
-          <img src="https://prosystems.kz/templates/template_name/images/pfr/its.png" alt="" />
-          <p>Служба поддержки</p>
+    <div className={cls.toCenter}>
+      <div className={cls.support}>
+        <div className={cls.support_head}>
+          <div className={cls.left}>
+            <img src="https://prosystems.kz/templates/template_name/images/pfr/its.png" alt="" />
+            <p>Служба поддержки</p>
+          </div>
         </div>
-      </div>
-      <div 
-        className={cls.chat_container}
-      >
-        <div className={cls.myMessages}>
-          {
+        <div 
+          className={cls.chat_container}
+        >
+          <div className={cls.myMessages}>
+            {
 
-            chatBase !== null ? chatBase.map(({ name, message, answer, times }, i) => (
-              <div 
-                className={ answer ? cls.messageContainer : cls.answerContainer} 
-                key={i}
-              >
+              chatBase !== null ? chatBase.map(({ name, message, answer, times }, i) => (
                 <div 
-                  className={answer ? cls.myMessage : cls.answer}
-                >              
-                <div className={cls.mess}>
-                    <i>{answer ? 'Служба поддержки' : name}</i>
-                    <p>{message}</p>
+                  className={ answer ? cls.messageContainer : cls.answerContainer} 
+                  key={i}
+                >
+                  <div 
+                    className={answer ? cls.myMessage : cls.answer}
+                  >              
+                  <div className={cls.mess}>
+                      <i>{answer ? 'Служба поддержки' : name}</i>
+                      <p>{message}</p>
+                    </div>
+                    <div className={cls.time}>
+                      <p>{times.hour}:{times.minute}</p>
+                    </div>
                   </div>
-                  <div className={cls.time}>
-                    <p>{times.hour}:{times.minute}</p>
-                  </div>
-                </div>
-              </div> 
-            )) : ''
-          } 
+                </div> 
+              )) : ''
+            } 
+          </div>
         </div>
-      </div>
-      <div 
-        className={cls.send_container}
-      >
-        <input  
-          type="text"  
-          placeholder='Ваше сообщение'
-          value={text}
-          onChange={e => {
-            setText(e.target.value)
-          }}
-        />
-        <li onClick={e => {
-          e.preventDefault()
-          send()
-        }}>
-          <RiSendPlaneFill />
-        </li>
+        <div 
+          className={cls.send_container}
+        >
+          <input  
+            type="text"  
+            placeholder='Ваше сообщение'
+            value={text}
+            onChange={e => {
+              setText(e.target.value)
+            }}
+          />
+          <li onClick={e => {
+            e.preventDefault()
+            send()
+          }}>
+            <RiSendPlaneFill />
+          </li>
+        </div>
       </div>
     </div>
   )

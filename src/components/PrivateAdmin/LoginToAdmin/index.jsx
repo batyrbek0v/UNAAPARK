@@ -1,24 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import cls from '../../Register/EmailRegist/EmailRegist.module.scss'
+import cls from './LoginToAdmin.module.scss'
 import FormInput from '../../../components/FormInput/FormInput'
-import GoogleAuth from '../GoogleAuth/GoogleAuth'
-import { handleLoginWithEmail } from '../../../firebase/firebase'
-import { useAuth } from '../../../providers/useAuth'
-import { modalAlert } from '../../../components/Alerts'
 
-const EmailLogin = () => {
+const LoginAdmin = ({error}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { users } = useAuth()
-
-
-    const signIn = () => {
-        handleLoginWithEmail(email, password)
-        modalAlert.isSaved('Вы успешно вошли в аккаунт!' ,'success')
-    }
 
     return (
         <React.Fragment>
@@ -43,27 +31,19 @@ const EmailLogin = () => {
                         className={cls.button}
                         onClick={e => {
                             e.preventDefault()
-                            signIn()
+                            localStorage.setItem('email', email)
+                            localStorage.setItem('password', password)
+                            window.location.reload()
                         }}
                     >
                         Войти
                     </button>
-                    <p>
-                        <span></span>
-                        <li>или</li>
-                        <span></span>
-                    </p>
-                    <p className={cls.havent}>
-                        Нет аккаунта?
-                        <Link to='/auth/register'>
-                            Регистрация
-                        </Link>
-                    </p>
-                    <GoogleAuth />
+
+                    <p>{error ? error : ''}</p>
                 </form>
             </div>
         </React.Fragment>
     )
 }
 
-export default EmailLogin
+export default LoginAdmin

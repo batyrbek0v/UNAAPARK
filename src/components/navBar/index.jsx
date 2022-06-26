@@ -8,20 +8,33 @@ import logo from '../images/Logo.png'
 import User from './User'
 import { useAuth } from '../../providers/useAuth'
 import { BsBookmark } from 'react-icons/bs'
+import { getSavedCars } from '../../configs/api'
 
 const NavBar = () => {
-
-  const data = JSON.parse(localStorage.getItem('data'))
-
+  const [savedBase, setSavedBase] = React.useState()
   const [sideActive, setSideActive] = React.useState(false)
 
   const [listIndex, setListIndex] = React.useState(1)
 
   const { users } = useAuth()
 
-
   // const [ sideActive , setSideActive ] = React.useState(false)
   // const [ listIndex, setListIndex ] = React.useState()
+
+  React.useEffect(() => {
+    getSavedCars(users && users.id)
+    .then(res => {
+      const result = Object.entries(res.data)
+      .map(([key, value]) => {
+            return {
+              id: key,
+              ...value
+            }
+          })
+
+        setSavedBase(result)
+      })
+  }, [savedBase])
 
   const sideBarActiveTrue = () => {
     setSideActive(true)

@@ -1,6 +1,19 @@
 .checking{
-  width: 350px;
-  height: 350px;
+  @media (min-width: 320px) {
+    width: 100%;
+    height: 90vh;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (min-width: 1024px) {
+    width: 350px;
+    height: 350px;
+    position: fixed;
+    right: 100px;
+    bottom: 25px;
+  }
   padding: 15px;
   background: #5C5CD6;
   border: 5px solid white;

@@ -18,7 +18,7 @@ export const useCard = () => {
           }) : []
         setBase(result)
       })
-  }, [base])
+  }, [])
   return {
     base
   }

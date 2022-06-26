@@ -2,11 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import cls from './CheckingAuth.module.scss'
 import { IoMdClose } from 'react-icons/io'
-import SupportChat from '../supportChat'
 import { useAuth } from '../../../../providers/useAuth'
+import FirstMessage from '../SendingFirstMessage'
+import SupportChat from '../supportChat'
 
 const CheckingAuth = ({ chatActive, setChatActive }) => {
   const { users } = useAuth()
+
+  const supportActive = localStorage.getItem('supportActive')
 
   return (
     <>
@@ -39,9 +42,13 @@ const CheckingAuth = ({ chatActive, setChatActive }) => {
           </div>
         </div>
       :
-        <SupportChat 
-          chatActive={chatActive} 
-          setChatActive={setChatActive}
+        supportActive 
+        ? 
+        <SupportChat setChatActive={setChatActive} /> 
+        : 
+        <FirstMessage 
+          chatActive={ chatActive } 
+          setChatActive={ setChatActive }
         />
       }
     </>

@@ -1,18 +1,17 @@
 export const CategoryOfCar = [
     {
+        id: 1,
         title: 'Все',
         route: 'All',
     },
     {
-        title: 'Premuim',
-        route: 'Premium',
+        id: 2,
+        title: 'По цене',
+        route: 'price',
     },
     {
-        title: 'Бизнес',
-        route: 'Business',
-    },
-    {
-        title: 'Эконом',
-        route: 'Econom',
+        id: 3,
+        title: 'По алфавиту',
+        route: 'alphabet',
     },
 ]
