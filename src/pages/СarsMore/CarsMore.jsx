@@ -18,6 +18,10 @@ const CarsMore = () => {
     const [base, setBase] = React.useState(null)
     const [dataBase, setDataBase] = React.useState(null)
 
+    const url = window.location.href
+
+    console.log(url);
+
     React.useEffect(() => {
         API.get()
             .then(res => {
