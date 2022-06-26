@@ -20,7 +20,6 @@ export const Message = {
   get: (uid) => {
     return axios.get(`${URL_BASE}/message/${uid}.json`)
   },
-
   post: (uid, data) => {
     return axios.post(`${URL_BASE}/message/${uid}.json`, data)
   },
@@ -37,8 +36,8 @@ export const toBase = {
   post: (uid, data) => {
     return axios.post(`${URL_BASE}/favorites/${uid}/product.json`, data)
   },
-  isSaved: (uid, id, data) => {
-    return axios.post(`${URL_BASE}/favorites/${uid}/product/${id}/saved.json`, data)
+  isSaved: (uid, id, value) => {
+    return axios.post(`${URL_BASE}/favorites/${uid}/product/${id}/isSaved.json`, value)
   },
 }
 

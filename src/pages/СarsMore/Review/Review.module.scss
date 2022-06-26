@@ -8,6 +8,28 @@
   h1{
     text-align: center;
   }
+  .review_form_with_auth{
+    width: 350px;
+    height: 150px;
+    background: #3B4FF9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .auth{
+      display: flex;
+      list-style: none;
+      span{
+        color: white;
+      }
+      li{
+        margin: 0 10px;
+        a{
+          color: white;
+        }
+      }
+    }
+  }
   .addReview{
     display: flex;
     flex-direction: column;
@@ -40,10 +62,11 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    padding: 50px 0;
+    gap: 20px;
     .reviewCard{
       width: 350px;
       padding: 20px 25px;
-      margin-top: 50px;
       background: aliceblue;
       border: 1px solid #d6e8f9;
       border-radius: 12px;

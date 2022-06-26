@@ -19,8 +19,7 @@ import Profile from './pages/Profile'
 import Favorites from './pages/Favorites'
 import AdminPanel from './pages/AdminPanel'
 import ChatAdmin from './components/ChatAdmin'
-
-
+import PrivateAdmin from './components/PrivateAdmin/PrivateAdmin'
 
 function App() {
   return (
@@ -45,7 +44,9 @@ function App() {
           <Route path='/rent' element={<Promo />} />
           <Route path='/contacts' element={<Contacts />} />
           <Route path='/filter' element={<Filter />} />
-          <Route path='/adminPanel' element={<AdminPanel />} />
+          <Route element={<PrivateAdmin />}>
+            <Route path='/admin' element={<AdminPanel />} />
+          </Route>
           <Route path='/chat' element={<ChatAdmin />} />
           <Route path='/carsmore/:id' element={<CarsMore />} />
           {/* <Route path='/advantages' element={<Advantages />} /> */}

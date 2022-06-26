@@ -4,6 +4,7 @@ import { RiSendPlaneFill } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
 import { Message } from '../../../../configs/api'
 import { useAuth } from '../../../../providers/useAuth'
+import { modalAlert } from '../../../Alerts'
 // import * as smoothscroll from "smoothscroll-polyfill";
 
 const SupportChat = ({ setChatActive }) => {
@@ -27,23 +28,11 @@ const SupportChat = ({ setChatActive }) => {
       })
 
   }, [database])
-
-
+      
   const send = () => {
     const time = new Date()
 
-    Message.post(users.id, {
-      id: users.id,
-      name: users.name,
-      message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
-      answer: false,
-      times: {
-        hour: time.getHours(),
-        minute: time.getMinutes()  
-      }
-    })
-
-    Message.postFirstMessage({
+    text.length === 0 ? modalAlert.emptyArea() : Message.post(users.id, {
       id: users.id,
       name: users.name,
       message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
@@ -55,8 +44,6 @@ const SupportChat = ({ setChatActive }) => {
     })
 
     setText('')
-
-    
   }
 
   return (
@@ -78,7 +65,7 @@ const SupportChat = ({ setChatActive }) => {
         <div className={cls.myMessages}>
           {
 
-            database !== null ? database.map(({id, name, message, answer, times}, i) => (
+            database !== null ? database.map(({name, message, answer, times}, i) => (
               <div 
                 className={ answer ? cls.answerContainer : cls.messageContainer} 
                 key={i}
@@ -91,7 +78,7 @@ const SupportChat = ({ setChatActive }) => {
                     <p>{message}</p>
                   </div>
                   <div className={cls.time}>
-                    <p>{times.hour}:{times.minute}</p>
+                    <p>{times.hour < 10 ? `0${times.hour}` : times.hour}:{times.minute < 10 ? `0${times.minute}` : times.minute}</p>
                   </div>
                 </div>
               </div> 

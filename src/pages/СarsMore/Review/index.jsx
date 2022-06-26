@@ -5,14 +5,19 @@ import cls from './Review.module.scss'
 import { API } from '../../../configs/api'
 import userDefaultAva from '../../../components/images/defaultUserAvatar.png'
 import { modalAlert } from '../../../components/Alerts'
+import errorSound from '../../../components/sound/error.mp3'
+import successSound from '../../../components/sound/success.mp3'
 
 const Review = () => {
   const [reviews, setReviews] = React.useState('')
   const [text, setText] = React.useState('')
 
-  const { users } = useAuth()
+  const error = new Audio(errorSound)
+  const success = new Audio(successSound)
 
   const id = localStorage.getItem('idOfCar')
+
+  const { users } = useAuth()
 
   React.useEffect(() => {
     API.getReview(id)
@@ -30,29 +35,37 @@ const Review = () => {
   }, [reviews])
 
   const send = () => {
-
     const time = new Date()
 
-    text.length === 0
-      ? modalAlert
-      .notSaved(
+    if(text.length === 0){
+      error.play()
+      modalAlert.notSaved(
         'Заполните поле !',
         'Напишите что-нибудь, чтобы отправить отзыв',
         'error',
         'Оk',
       )
-      : API.postReview(id, {
+    }else{
+      success.play()
+      API.postReview(id, {
         name: users.name,
         review: text,
         times: {
-          day: time.getDay(),
+          day: time.getDate(),
           month: time.getMonth(),
           year: time.getFullYear(),
           hour: time.getHours(),
           minute: time.getMinutes()
         }
       })
-
+      modalAlert.notSaved(
+        'Успешно добавлено !',
+        '',
+        'success',
+        'Оk',
+      )
+    }
+      
     setText('')
   }
 
@@ -85,13 +98,13 @@ const Review = () => {
               value={text}
               onChange={e => setText(e.target.value)}
             />
-            <button onClick={() => send()}>Отправить</button>
+            <button onClick={() => send(id)}>Отправить</button>
           </div>
       }
       <div className={cls.reviews}>
         {
-          reviews && reviews.map(({ name, review, times }) => (
-            <div className={cls.reviewCard}>
+          reviews && reviews.map(({ name, review, times }, i) => (
+            <div className={cls.reviewCard} key={i}>
               <div className={cls.reviewersInfo}>
                 <div className={cls.avatar}>
                   <img src={users && users.photo ? users.photo : userDefaultAva} alt="avatar" />

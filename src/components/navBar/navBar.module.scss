@@ -125,11 +125,28 @@
   }
 
   .save{
-   
     list-style: none;
     padding: 10px 12px;
     background: #3646D4;
     border-radius: 50px;
+    display: none;
+    position: relative;
+    // .count{
+    //   position: absolute;
+    //   right: -5px;
+    //   top: -5px;
+    //   width: 20px;
+    //   height: 20px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   font-size: 15px;
+    //   font-weight: bold;
+    //   border-radius: 50px;
+    //   color: white;
+    //   background: crimson;
+    // }
+
     li{
       display: flex;
       align-items: center;
@@ -216,6 +233,9 @@
   @media (min-width: 1440px) {
     .sign{
       display: flex;
+    }
+    .save{
+      display: block;
     }
     .user{
       display: flex;

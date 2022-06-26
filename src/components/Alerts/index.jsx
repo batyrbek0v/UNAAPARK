@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 
 export const modalAlert = {
-  isSaved: (title, icon,) => {
+  isSaved: (title, icon) => {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -34,6 +34,14 @@ export const modalAlert = {
       text: `${text}`,
       icon: `${icon}`,
       confirmButtonText: `${btn}`
+    })
+  },
+  emptyArea: () => {
+    return Swal.fire({
+      title: 'Напишите что-нибудь !',
+      text: 'Чтобы отправить сообщение напишите что-то',
+      icon: 'error',
+      confirmButtonText: 'Продолжить'
     })
   },
 }

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Card from '../Card/CarCards/Card'
 import { useCard } from '../hooks/useCard'
 import cls from './Cars.module.scss'
+import Sort from '../Sort'
 
 const Carss = () => {
 
@@ -18,6 +19,7 @@ const Carss = () => {
   return (
     <div style={{ 'display': 'flex', "justifyContent": 'center', "flexDirection": "column", "alignItems": 'center' }}>
       <div className={cls.filter}>
+        <Sort />
         <div className={cls.filterForm}>
           <input
             type="text"
