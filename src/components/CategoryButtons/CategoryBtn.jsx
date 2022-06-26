@@ -1,12 +1,14 @@
 import React from 'react'
-import Card from '../Card/CarCards/Card'
 import { marks } from '../utils/Marks'
 import cls from './CategoryBtn.module.scss'
 
 
 const CategoryBtn = () => {
-
     const [ category , setCategory ] = React.useState()
+
+    React.useEffect(() => {
+        localStorage.setItem('category', category)
+    }, [category])
 
     return (
         <>
@@ -14,20 +16,20 @@ const CategoryBtn = () => {
                 {
                     marks.map(({id, title, path }) => (
                         <button
-                            className={cls.btn}
-                            key={id}
-                            onClick={() => {
-                                setCategory(path.toUpperCase())
-                            }}
+                        className={cls.btn}
+                        key={id}
+                        onClick={() => {
+                            setCategory(path)
+                        }}
                         >
                             {title}
                         </button>
                     ))
                 }
             </div>
-
         </>
     )
+
 }
 
 export default CategoryBtn

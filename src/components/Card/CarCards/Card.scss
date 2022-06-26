@@ -13,17 +13,11 @@
         padding: 20px 3rem;
     }
 
-    @media (min-width:1024px) {
-        padding: 4rem 4rem;
-    }
-
     .cars_card {
-        position: relative;
-        text-decoration: none;
 
         @media (min-width:320px) {
             width: 100%;
-            height: 180px;
+            height: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -34,103 +28,105 @@
             border-radius: 12px;
         }
 
-        @media (min-width:425px) {
-            margin-top: 50px;
-        }
-
         @media (min-width:768px) {
-            width: 100%;
-            height: 200px;
             margin: 20px 0px;
         }
 
         @media (min-width:1024px) {
             width: 400px;
+            height: auto;
             box-shadow: none;
             transition: 0.3s;
             margin: 20px 2.5px;
             border: 1px solid #d6e8f9;
+            &:hover{
+                box-shadow: none;
+            }
         }
 
         @media (min-width:1300px) {
             width: 450px;
+            height: 250px;
         }
 
-        .favorites_btn1 {
-            width: 35px;
-            height: 35px;
-            margin: 0;
-            border: 1px solid black;
-            cursor: pointer;
-            position: absolute;
-            top: 90px;
-        }
+
         .card_body {
             @media (min-width:320px) {
                 width: 100%;
-                position: relative;
-                border: 0;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
                 padding: 0.55rem;
-                top: 0;
-                left: 0;
                 display: flex;
                 justify-content: space-between;
+                border: 0;
             }
 
-            @media (min-width: 425px) {
-                width: 100%;
-            }
-
-            @media (min-width: 768px) {
+            @media (min-width:1024px) {
                 display: flex;
                 width: 100%;
-                height: 100px;
+                height: 200px;
             }
 
             .card_img {
+                @media (min-width:320px) {
+                    width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                @media (min-width:768px) {
+                    height: 200px;
+                }
+                @media (min-width:1024px) {
+                    height: auto;
+                }
                 img {
                     @media (min-width:320px) {
-                        width: 150px;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-
-                    @media (min-width:768px) {
                         width: 100%;
-                        height: 150px;
-                        object-fit: cover;
-                    }
-                    @media (min-width:1024px) {
-                        width: 300px;
-                        height: 150px;
+                        height: 100%;
                         object-fit: cover;
                     }
                 }
             }
 
             .card_title {
-                position: absolute;
-                display: flex;
-                gap: 10px;
-                flex-direction: column;
-                align-items: flex-end;
-                right: 4%;
-
+                @media (min-width:320px) {
+                    display: flex;
+                    width: 50%;
+                    gap: 10px;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    text-align: right;
+                }
+                @media (min-width:768px) {
+                    justify-content: center;
+                }
+                h1,
+                h2,
+                h3,
                 h4 {
-                    color: #333;
-
                     margin: 0;
-
-                    &:nth-child(2) {
-                        color: #555;
-                    }
-
-                    &:nth-child(3) {
-                        color: #555;
+                    color: #777;
+                }
+                h1 {
+                    @media (min-width:320px) {
+                        font-size: 1.2rem;
+                        color: #333;
+                        margin: 0;
                     }
                 }
             }
 
+            .favorites_btn1 {
+                width: 35px;
+                height: 35px;
+                margin: 0;
+                border: 1px solid black;
+                cursor: pointer;
+                border-radius: 4px;
+            }
 
         }
 
@@ -139,7 +135,7 @@
                 width: 100%;
                 height: 90%;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: flex-end;
                 margin-top: 10px;
                 gap: 8px;
@@ -148,19 +144,13 @@
 
             @media (min-width:425px) {
                 width: 100%;
-                // border: 1px solid black ;
                 margin-top: 10px;
-                gap: 5.2px;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
+                gap: 12px;
             }
 
             @media (min-width:1024px) {
                 height: 12%;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
+
             }
 
             .card_footer_btn {
@@ -180,22 +170,19 @@
                     background: #3B4FF9;
                     color: white;
                     transition: .5s;
-                    border-radius: 0px 30px 0px 8px;
+                    border-radius: 0px 30px 2px 8px;
                 }
 
                 &:nth-child(2) {
-                    border-radius: 30px 0 8px 0;
+                    border-radius: 30px 0 8px 2px;
                     border-left: 1px solid #d6e8f9;
-
                 }
 
                 &:hover {
-                    border-top: 1px solid #d6e8f9;
-                    border-right: 1px solid #d6e8f9;
-                    color: #3B4FF9;
-                    background: none;
+                    width: 100%;
+                    color: white;
+                    background-color: #3B4FF9;
                 }
-
             }
 
         }

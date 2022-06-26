@@ -58,4 +58,6 @@ export const handleRegistWithEmail = async (useremail, userpassword, name) => {
 
 /////////////////////////////////////// SIGN-OUT
 
+
+
 export const handleSignOut = () => signOut(auth)

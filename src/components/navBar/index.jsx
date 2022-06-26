@@ -11,31 +11,31 @@ import { BsBookmark } from 'react-icons/bs'
 import { getSavedCars } from '../../configs/api'
 
 const NavBar = () => {
+  const [savedBase, setSavedBase] = React.useState()
   const [sideActive, setSideActive] = React.useState(false)
-  const [database, setDatabase] = React.useState(null)
 
   const [listIndex, setListIndex] = React.useState(1)
 
   const { users } = useAuth()
 
+  // const [ sideActive , setSideActive ] = React.useState(false)
+  // const [ listIndex, setListIndex ] = React.useState()
+
   React.useEffect(() => {
     getSavedCars(users && users.id)
-      .then(res => {
-        const result = Object.entries(res.data)
-          .map(([key, value]) => {
+    .then(res => {
+      const result = Object.entries(res.data)
+      .map(([key, value]) => {
             return {
               id: key,
               ...value
             }
           })
 
-        setDatabase(result)
+        setSavedBase(result)
       })
-  })  
-   
-  // const [ sideActive , setSideActive ] = React.useState(false)
-  // const [ listIndex, setListIndex ] = React.useState()
-  
+  }, [savedBase])
+
   const sideBarActiveTrue = () => {
     setSideActive(true)
   }
@@ -53,33 +53,33 @@ const NavBar = () => {
         <ul className={cls.list}>
           <ul>
             {
-              NavBar_utils.map(({ id, title, path }) => <li
-                key={id}
-                className={id === listIndex ? cls.active : ''}
-                onClick={() => setListIndex(id)}
-              ><Link to={path}>{title}</Link></li>)
+              NavBar_utils.map(({ id, title, path }) =>
+                <li
+                  key={id}
+                  className={id === listIndex ? cls.active : ''}
+                  onClick={() => setListIndex(id)}
+                >
+                  <Link to={path}>{title}</Link>
+                </li>)
             }
           </ul>
         </ul>
 
         {
           users && <div className={cls.rightNav}>
-          <div className={cls.save}>
-            <div className={cls.count}>
-              <span>{database ? database.length === 0 ? '0' : database.length : '0'}</span>
+            <div className={cls.save}>
+              <li>
+                <Link to={'/saved'}>
+                  <BsBookmark />
+                </Link>
+              </li>
             </div>
-            <li>
-              <Link to={'/saved'}>
-                <BsBookmark />
-              </Link>
-            </li>
+            <div className={cls.user}>
+              {
+                <User name={users.name[0]} photo={users.photo} />
+              }
+            </div>
           </div>
-          <div className={cls.user}>
-            {
-              <User name={users.name[0]} photo={users.photo} /> 
-            }
-          </div>
-        </div>
         }
 
         <div className={users && users ? cls.authNone : cls.auth}>
