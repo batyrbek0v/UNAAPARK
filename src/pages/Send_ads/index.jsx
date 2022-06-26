@@ -10,19 +10,23 @@ const Send_Ads = () => {
   const [model, setModel] = React.useState('')
   const [title, setTitle] = React.useState('')
   const [photo, setPhoto] = React.useState('')
+  const [maxSpeed, setMaxSpeed] = React.useState('')
+  const [power, setPower] = React.useState('')
   const [year, setYear] = React.useState('')
   const [transmission, setTransmission] = React.useState('')
   const [type, setType] = React.useState('')
+  const [price, setPrice] = React.useState('')
   const [fuel, setFuel] = React.useState('')
   const [color, setColor] = React.useState('')
   const [gas, setGas] = React.useState('')
   const [category, setCategory] = React.useState('')
-  const [price, setPrice] = React.useState('')
 
   const send = () => {
     setBase({
       title,
       model,
+      maxSpeed,
+      power,
       year,
       photo,
       transmission,
@@ -54,6 +58,9 @@ const Send_Ads = () => {
           </div>
           <div>
             <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
+            <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
+            <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
+            <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
           </div>
           <div>
             <input type="text" placeholder="Цвет машины" onChange={e => setColor(e.target.value)} />
@@ -63,6 +70,12 @@ const Send_Ads = () => {
           </div>
           <div>
             <input type="text" placeholder='Объем двигателя' onChange={e => setFuel(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder='Макс скорость машины' onChange={e => setMaxSpeed(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder='Лошадиные силы в машине' onChange={e => setPower(e.target.value)} />
           </div>
           <div>
             <input type="text" placeholder='Цена' onChange={e => setPrice(e.target.value)} />

@@ -1,10 +1,10 @@
 import React from 'react'
-import Card from '../../components/Card/CarCards/Card'
+import Carss from '../../components/FilterCars'
 
 const Cars = () => {
 	return (
 		<>
-			<Card />
+			<Carss />
 		</>
 	)
 }
