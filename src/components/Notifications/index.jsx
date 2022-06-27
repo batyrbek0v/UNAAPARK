@@ -45,7 +45,7 @@ const Notifications = () => {
   return (
     <div className={cls.notifications}>
       {
-        chatBase && chatBase.map(({id, name, message}, i) => (
+        chatBase ? chatBase.map(({id, name, message}, i) => (
           <div 
             className={cls.message}
             onClick={() => toChat(id)}
@@ -55,7 +55,7 @@ const Notifications = () => {
             <p>{name}</p>
             <p>{message}</p>
           </div>
-        ))  
+        )) : <h1>Пусто!</h1>
       }
     </div>
   )

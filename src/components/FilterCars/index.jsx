@@ -4,19 +4,14 @@ import Card from '../Card/CarCards/Card'
 import { useCard } from '../hooks/useCard'
 import cls from './Cars.module.scss'
 import { marks } from '../utils/Marks'
-import SortSide from '../Sort/SortSide'
 
 const Carss = () => {
 
   const { base } = useCard()
   const [mark, setMark] = useState('')
 
-  const [error , setError] = useState('')
 
   const [ database, setDatabase ] = React.useState(null)
-  const [ sortValue, setSortValue ] = React.useState('Все')
-  const [ sortText, setSortText ] = React.useState('Все')
-  const [ sideActive, setSideActive ] = React.useState(false)
   const [ category, setCategory ] = React.useState(null)
   
   React.useEffect(() => {
@@ -32,13 +27,13 @@ const Carss = () => {
     }, [category])
 
   const filteredCars = base?.filter(car => {
-    return car ? car.title.toLowerCase().includes(mark.toLocaleLowerCase()) : setError('No result')
+    return car.title.toLowerCase().includes(mark.toLocaleLowerCase()) 
   })
 
   return (
-    <div style={{ 'display': 'flex', "justifyContent": 'center', "flexDirection": "column", "alignItems": 'center' }}>
+    <div className={cls.filterToCenter}>
       <div className={cls.filter}>
-        <div className={cls.filtration}>
+        {/* <div className={cls.filtration}>
           <div className={cls.container}>
                 {
                   marks.map(({id, title, path }) => (
@@ -54,22 +49,7 @@ const Carss = () => {
                   ))
                 }
             </div>
-          <div className={cls.sort}>
-            <p>Сортировка: 
-              <span
-                onClick={() => setSideActive(!sideActive)}
-              >
-                {sortText}
-              </span>
-            </p>
-            <SortSide 
-              sideActive={sideActive} 
-              setSideActive={setSideActive}
-              setSortValue={setSortValue}
-              setSortText={setSortText}
-            />
-          </div>
-        </div>
+        </div> */}
         <div className={cls.filterForm}>
           <input
             type="text"
@@ -102,10 +82,8 @@ const Carss = () => {
         {
           <Card 
             base={base} 
-            filteredBase={filteredCars} 
+            filteredCars={filteredCars} 
             filteredWithMark={database} 
-            error={error} 
-            sortValue={sortValue} 
           />
         }
       </div>
