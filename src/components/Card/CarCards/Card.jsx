@@ -69,12 +69,12 @@ const Card = ({ base, filteredBase, filteredWithMark, sortValue }) => {
 			<div className='card_container'>
 				{
 					filteredWithMark === null
-						? base.map(({ id, model, title, year, photo, price }) => (
+						? base.map(({ id, model, title, year, url, price }) => (
 							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
 								<div className="card_body">
 									<div className="card_img">
 										<Link to={`/carsmore/${id}`}>
-											<img src={photo ? photo : notImage} alt={title} />
+											<img src={url ? url : notImage} alt={title} />
 										</Link>
 									</div>
 									<div className='card_title'>

@@ -31,7 +31,6 @@ const Send_Ads = () => {
       maxSpeed,
       power,
       year,
-      
       photo:
       {
         url,
