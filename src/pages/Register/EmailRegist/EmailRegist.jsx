@@ -7,6 +7,7 @@ import FormInput from '../../../components/FormInput/FormInput'
 import FormButtons from '../../../components/FormButton/FormButtons'
 import { handleRegistWithEmail } from '../../../firebase/firebase'
 import { useAuth } from '../../../providers/useAuth'
+import { modalAlert } from '../../../components/Alerts'
 
 
 
@@ -16,11 +17,19 @@ const EmailRegist = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
-    
+
+    const isValid = () => {
+        if (!email.length || !password.length || !name.length) {
+            modalAlert.notSaved('Заполните все поля', '', 'error' , 'OK')
+        } else {
+            handleRegistWithEmail(email, password, name)
+        }
+    }
+
     return (
         <React.Fragment>
             <div className={cls.login}>
-                 <form>
+                <form>
                     <h1>Регистрация</h1>
                     <FormInput
                         type={'text'}
@@ -47,7 +56,7 @@ const EmailRegist = () => {
                         className={cls.button}
                         onClick={e => {
                             e.preventDefault()
-                            handleRegistWithEmail(email, password , name)
+                            isValid()
                         }}
                     >
                         Зарегистрироваться

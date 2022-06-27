@@ -11,28 +11,28 @@ const Carss = () => {
   const { base } = useCard()
   const [mark, setMark] = useState('')
 
-  const [error , setError] = useState('')
+  const [error, setError] = useState('')
 
-  const [ database, setDatabase ] = React.useState(null)
-  const [ sortValue, setSortValue ] = React.useState('Все')
-  const [ sortText, setSortText ] = React.useState('Все')
-  const [ sideActive, setSideActive ] = React.useState(false)
-  const [ category, setCategory ] = React.useState(null)
-  
+  const [database, setDatabase] = React.useState(null)
+  const [sortValue, setSortValue] = React.useState('Все')
+  const [sortText, setSortText] = React.useState('Все')
+  const [sideActive, setSideActive] = React.useState(false)
+  const [category, setCategory] = React.useState(null)
+
   React.useEffect(() => {
     console.log(category);
-      const result = base && base.filter(item => {
-        if(item.title === category){
-          return item
-        }
-      })
+    const result = base && base.filter(item => {
+      if (item.title === category) {
+        return item
+      }
+    })
 
-      setDatabase(result)
-      console.log(result);
-    }, [category])
+    setDatabase(result)
+    console.log(result);
+  }, [category])
 
   const filteredCars = base?.filter(car => {
-    return car ? car.title.toLowerCase().includes(mark.toLocaleLowerCase()) : setError('No result')
+    return car.title.toLowerCase().includes(mark.toLocaleLowerCase())
   })
 
   return (
@@ -40,30 +40,30 @@ const Carss = () => {
       <div className={cls.filter}>
         <div className={cls.filtration}>
           <div className={cls.container}>
-                {
-                  marks.map(({id, title, path }) => (
-                    <button
-                      className={cls.btn}
-                      key={id}
-                      onClick={() => {
-                        setCategory(path)
-                      }}
-                      >
-                        {title}
-                    </button>
-                  ))
-                }
-            </div>
+            {
+              marks.map(({ id, title, path }) => (
+                <button
+                  className={cls.btn}
+                  key={id}
+                  onClick={() => {
+                    setCategory(path)
+                  }}
+                >
+                  {title}
+                </button>
+              ))
+            }
+          </div>
           <div className={cls.sort}>
-            <p>Сортировка: 
+            <p>Сортировка:
               <span
                 onClick={() => setSideActive(!sideActive)}
               >
                 {sortText}
               </span>
             </p>
-            <SortSide 
-              sideActive={sideActive} 
+            <SortSide
+              sideActive={sideActive}
               setSideActive={setSideActive}
               setSortValue={setSortValue}
               setSortText={setSortText}
@@ -76,36 +76,16 @@ const Carss = () => {
             placeholder='Марка машины...'
             onChange={e => setMark(e.target.value)}
           />
-          {/* <div>
-              <select onChange={e => setType(e.target.value)}>
-                <option selected disabled>Кузов</option>
-                <option mark="Все">Все</option>
-                <option mark="Седан">Седан</option>
-                <option mark="Внедорожник">Внедорожник</option>
-                <option mark="Купе">Купе</option>
-                <option mark="Универсал">Универсал</option>
-                <option mark="Хэтчбек">Хэтчбек</option>
-                <option mark="Кабриолет">Кабриолет</option>
-                <option mark="Пикап">Пикап</option>
-                <option mark="Лимузин">Лимузин</option>
-              </select>
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder='Цена до'
-                onChange={e => setMark(e.target.value)} />
-            </div> */}
         </div>
       </div>
       <div className={cls.filter_block}>
         {
-          <Card 
-            base={base} 
-            filteredBase={filteredCars} 
-            filteredWithMark={database} 
-            error={error} 
-            sortValue={sortValue} 
+          <Card
+            base={base}
+            filteredBase={filteredCars}
+            filteredWithMark={database}
+            error={error}
+            sortValue={sortValue}
           />
         }
       </div>

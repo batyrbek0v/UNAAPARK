@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import notImage from '../../images/notCar.png'
-import './Card.scss'
 import Loader from '../../Loader'
 import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 import errorSound from '../../sound/error.mp3'
 import successSound from '../../sound/success.mp3'
+import './Card.scss'
 
 import { modalAlert } from '../../Alerts'
 
@@ -20,10 +20,12 @@ const Card = ({ base, filteredBase, filteredWithMark, sortValue }) => {
 	const success = new Audio(successSound)
 
 	const handleFavorite = (id) => {
+
 		const favoriteCar = base && base.find(item => item.id === id)
 
 		if (users) {
-			toBase.post(users.id, favoriteCar)
+			toBase.put(users.id, favoriteCar, id)
+
 			modalAlert.isSaved('Успешно добавлено !', 'success',)
 			success.play()
 		} else {
@@ -38,17 +40,16 @@ const Card = ({ base, filteredBase, filteredWithMark, sortValue }) => {
 
 	}
 
-	function SortByTitle(x, y){
-		if (x.title < y.title) {return -1}
-		if (x.title > y.title) {return 1}
+	function SortByTitle(x, y) {
+		if (x.title < y.title) { return -1 }
+		if (x.title > y.title) { return 1 }
 		return 0;
 	}
 
-	function SortByPrice(x, y){
+	function SortByPrice(x, y) {
 		return x.price - y.price
 	}
-	
-	
+
 	const sortedByTitle = () => {
 		const sorted = base && base.sort(SortByTitle)
 
@@ -140,115 +141,115 @@ const Card = ({ base, filteredBase, filteredWithMark, sortValue }) => {
 								</div>
 							</div>
 						))
-						: sortValue === 'alphabet' ? sortedByTitle().map(({ id, model, title, year, photo, price }) => (
-							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-								<div className="card_body">
-									<div className="card_img">
-										<Link to={`/carsmore/${id}`}>
-											<img src={photo ? photo : notImage} alt={title} />
-										</Link>
+							: sortValue === 'alphabet' ? sortedByTitle().map(({ id, model, title, year, photo, price }) => (
+								<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+									<div className="card_body">
+										<div className="card_img">
+											<Link to={`/carsmore/${id}`}>
+												<img src={photo ? photo : notImage} alt={title} />
+											</Link>
+										</div>
+										<div className='card_title'>
+											<h1>{title}</h1>
+											<h2>{model}</h2>
+											<h4>{year}</h4>
+											<h4>{price} $ в сутки</h4>
+											<button
+												className='favorites_btn1'
+												onClick={() => {
+													handleFavorite(id)
+												}}
+											>
+												<BsBookmark />
+											</button>
+										</div>
 									</div>
-									<div className='card_title'>
-										<h1>{title}</h1>
-										<h2>{model}</h2>
-										<h4>{year}</h4>
-										<h4>{price} $ в сутки</h4>
+									<div className="card_footer">
+										<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
 										<button
-											className='favorites_btn1'
+											className='card_footer_btn'
 											onClick={() => {
-												handleFavorite(id)
+												window.open('https://t.me/sattarzanov')
 											}}
 										>
-											<BsBookmark />
+											Забронировать
 										</button>
 									</div>
 								</div>
-								<div className="card_footer">
-									<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-									<button
-										className='card_footer_btn'
-										onClick={() => {
-											window.open('https://t.me/sattarzanov')
-										}}
-									>
-										Забронировать
-									</button>
-								</div>
-							</div>
-						))
-						: sortValue === 'price' ? sortedByPrice().map(({ id, model, title, year, photo, price }) => (
-							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-								<div className="card_body">
-									<div className="card_img">
-										<Link to={`/carsmore/${id}`}>
-											<img src={photo ? photo : notImage} alt={title} />
-										</Link>
+							))
+								: sortValue === 'price' ? sortedByPrice().map(({ id, model, title, year, photo, price }) => (
+									<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+										<div className="card_body">
+											<div className="card_img">
+												<Link to={`/carsmore/${id}`}>
+													<img src={photo ? photo : notImage} alt={title} />
+												</Link>
+											</div>
+											<div className='card_title'>
+												<h1>{title}</h1>
+												<h2>{model}</h2>
+												<h4>{year}</h4>
+												<h4>{price} $ в сутки</h4>
+												<button
+													className='favorites_btn1'
+													onClick={() => {
+														handleFavorite(id)
+													}}
+												>
+													<BsBookmark />
+												</button>
+											</div>
+										</div>
+										<div className="card_footer">
+											<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
+											<button
+												className='card_footer_btn'
+												onClick={() => {
+													window.open('https://t.me/sattarzanov')
+												}}
+											>
+												Забронировать
+											</button>
+										</div>
 									</div>
-									<div className='card_title'>
-										<h1>{title}</h1>
-										<h2>{model}</h2>
-										<h4>{year}</h4>
-										<h4>{price} $ в сутки</h4>
-										<button
-											className='favorites_btn1'
-											onClick={() => {
-												handleFavorite(id)
-											}}
-										>
-											<BsBookmark />
-										</button>
-									</div>
-								</div>
-								<div className="card_footer">
-									<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-									<button
-										className='card_footer_btn'
-										onClick={() => {
-											window.open('https://t.me/sattarzanov')
-										}}
-									>
-										Забронировать
-									</button>
-								</div>
-							</div>
-						))
-						: filteredWithMark ? filteredWithMark.map(({ id, model, title, year, photo, price }) => (
-							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
-								<div className="card_body">
-									<div className="card_img">
-										<Link to={`/carsmore/${id}`}>
-											<img src={photo ? photo : notImage} alt={title} />
-										</Link>
-									</div>
-									<div className='card_title'>
-										<h1>{title}</h1>
-										<h2>{model}</h2>
-										<h4>{year}</h4>
-										<h4>{price} $ в сутки</h4>
-										<button
-											className='favorites_btn1'
-											onClick={() => {
-												handleFavorite(id)
-											}}
-										>
-											<BsBookmark />
-										</button>
-									</div>
-								</div>
-								<div className="card_footer">
-									<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
-									<button
-										className='card_footer_btn'
-										onClick={() => {
-											window.open('https://t.me/sattarzanov')
-										}}
-									>
-										Забронировать
-									</button>
-								</div>
-							</div>
-						))
-						: filteredBase.length === 0 ? <h1>Ничего не найдено!</h1> : ''
+								))
+									: filteredWithMark ? filteredWithMark.map(({ id, model, title, year, photo, price }) => (
+										<div to={`/carsmore/${id}`} className="cars_card" key={id}>
+											<div className="card_body">
+												<div className="card_img">
+													<Link to={`/carsmore/${id}`}>
+														<img src={photo ? photo : notImage} alt={title} />
+													</Link>
+												</div>
+												<div className='card_title'>
+													<h1>{title}</h1>
+													<h2>{model}</h2>
+													<h4>{year}</h4>
+													<h4>{price} $ в сутки</h4>
+													<button
+														className='favorites_btn1'
+														onClick={() => {
+															handleFavorite(id)
+														}}
+													>
+														<BsBookmark />
+													</button>
+												</div>
+											</div>
+											<div className="card_footer">
+												<Link className='card_footer_btn' to={`/carsmore/${id}`}>Детали</Link>
+												<button
+													className='card_footer_btn'
+													onClick={() => {
+														window.open('https://t.me/sattarzanov')
+													}}
+												>
+													Забронировать
+												</button>
+											</div>
+										</div>
+									))
+										: filteredBase.length === 0 ? <h1>Ничего не найдено!</h1> : ''
 				}
 			</div>
 		</>

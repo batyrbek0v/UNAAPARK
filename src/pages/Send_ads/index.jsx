@@ -9,7 +9,7 @@ const Send_Ads = () => {
   const [brand, setBrand] = React.useState('')
   const [model, setModel] = React.useState('')
   const [title, setTitle] = React.useState('')
-  const [photo, setPhoto] = React.useState('')
+  const [url, setUrl] = React.useState('')
   const [sidePh, setSidePh] = React.useState('')
   const [backPh, setBackPh] = React.useState('')
   const [salonPh, setSalonPh] = React.useState('')
@@ -31,8 +31,10 @@ const Send_Ads = () => {
       maxSpeed,
       power,
       year,
+      
       photo:
       {
+        url,
         sidePh,
         backPh,
         salonPh,
@@ -65,7 +67,7 @@ const Send_Ads = () => {
             <input type="text" placeholder='Год выпуска' onChange={e => setYear(e.target.value)} />
           </div>
           <div>
-            <input type="text" placeholder='Фото машины' onChange={e => setPhoto(e.target.value)} />
+            <input type="text" placeholder='Фото машины' onChange={e => setUrl(e.target.value)} />
             <input type="text" placeholder='Вид слева' onChange={e => setSidePh(e.target.value)} />
             <input type="text" placeholder='Вид сзади' onChange={e => setBackPh(e.target.value)} />
             <input type="text" placeholder='Фото с салона' onChange={e => setSalonPh(e.target.value)} />
