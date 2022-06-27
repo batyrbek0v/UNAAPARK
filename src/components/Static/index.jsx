@@ -2,24 +2,32 @@ import React from 'react'
 import cls from './Static.module.scss'
 import ProgressCircle from '../ProgressCircle/ProgressCircle'
 import BetweenTitle from '../TitleForStatics/BetweenTitle'
+import { useCard } from '../hooks/useCard'
+
 
 
 
 
 const Static = () => {
+
+
+  const { base } = useCard()
+
+  console.log(base);
+
   return (
     <React.Fragment>
       <div className={cls.statistics}>
         <BetweenTitle color="black" />
         <div className={cls.stat_block}>
           {
-            <ProgressCircle percentage={400} article="км" />
+            base && base.map(base => <ProgressCircle percentage={base.maxSpeed} article="км" />).slice(0, 1)
           }
           <p>МАХ.Скорость</p>
         </div>
         <div className={cls.stat_block}>
           {
-            <ProgressCircle percentage={191} article="л.с" />
+            base && base.map(base => <ProgressCircle percentage={base.power} article="л.с" />).slice(0, 1)
           }
           <p>Мощность двигаетеля</p>
         </div>

@@ -10,6 +10,7 @@ const Send_Ads = () => {
   const [model, setModel] = React.useState('')
   const [title, setTitle] = React.useState('')
   const [url, setUrl] = React.useState('')
+  const [benz, setBenz] = React.useState('')
   const [sidePh, setSidePh] = React.useState('')
   const [backPh, setBackPh] = React.useState('')
   const [salonPh, setSalonPh] = React.useState('')
@@ -31,12 +32,13 @@ const Send_Ads = () => {
       maxSpeed,
       power,
       year,
+      benz,
       photo:
       {
-        url,
-        sidePh,
         backPh,
         salonPh,
+        url,
+        sidePh,
       },
       transmission,
       type,
@@ -79,6 +81,9 @@ const Send_Ads = () => {
           </div>
           <div>
             <input type="text" placeholder='Объем двигателя' onChange={e => setFuel(e.target.value)} />
+          </div>
+          <div>
+            <input type="text" placeholder='Объем топливного бака' onChange={e => setBenz(e.target.value)} />
           </div>
           <div>
             <input type="text" placeholder='Макс скорость машины' onChange={e => setMaxSpeed(e.target.value)} />
