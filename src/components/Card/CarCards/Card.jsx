@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import notImage from '../../images/notCar.png'
-import './Card.scss'
 import Loader from '../../Loader'
 import { API, toBase } from '../../../configs/api'
 import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 import errorSound from '../../sound/error.mp3'
 import successSound from '../../sound/success.mp3'
+import './Card.scss'
 
 import { modalAlert } from '../../Alerts'
 
@@ -20,10 +20,12 @@ const Card = ({ base, filteredCars }) => {
 
 
 	const handleFavorite = (id) => {
+
 		const favoriteCar = base && base.find(item => item.id === id)
 
 		if (users) {
-			toBase.post(users.id, favoriteCar)
+			toBase.put(users.id, favoriteCar, id)
+
 			modalAlert.isSaved('Успешно добавлено !', 'success',)
 			success.play()
 		} else {
@@ -51,7 +53,7 @@ const Card = ({ base, filteredCars }) => {
 								<div className="card_body">
 									<div className="card_img">
 										<Link to={`/carsmore/${id}`}>
-											<img src={photo ? photo : notImage} alt={title} />
+											<img src={photo.url ? photo.url : notImage} alt={title} />
 										</Link>
 									</div>
 									<div className='card_title'>

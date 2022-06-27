@@ -33,8 +33,8 @@ export const Message = {
 
 
 export const toBase = {
-  post: (uid, data) => {
-    return axios.post(`${URL_BASE}/favorites/${uid}/product.json`, data)
+  put: (uid, data, productId) => {
+    return axios.put(`${URL_BASE}/favorites/${uid}/product/${productId}.json`, data)
   },
   isSaved: (uid, id, value) => {
     return axios.post(`${URL_BASE}/favorites/${uid}/product/${id}/isSaved.json`, value)

@@ -16,27 +16,34 @@ const Favorites = () => {
 
 	const navigate = useNavigate()
 
-	React.useEffect(() => {
+	const getCartBase = () => {
 		getSavedCars(users && users.id)
 			.then(res => {
 				if (res.data) {
-					const baseWithID = Object.entries(res.data)
-						.map(item => {
-							const id = item[0]
+					const baseWithID = Object.entries(res.data).map(([id, item]) => {
 							return {
-								...item[1],
-								id
+								id,
+								...item
 							}
 						})
 					setBase(baseWithID)
 				}
 			})
-	}, [base])
+	}
 
+	React.useEffect(() => {
+		getCartBase()
+	}, [])
+
+	
+
+		console.log(base);
 
 	const handleRemoveCar = (id) => {
 		modalAlert.isSaved('Успешно удалено !', 'success')
-		removeSavedCar(users.id, id)
+		removeSavedCar(users.id, id).then(() => {
+			getCartBase()
+		})
 	}
 	
 	return (
