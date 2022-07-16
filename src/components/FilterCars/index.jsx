@@ -45,6 +45,7 @@ const Carss = () => {
             <option value="BMW">BMW</option>
             <option value="Lexus">Lexus</option>
             <option value="Kia">KIA</option>
+            <option value="Kia">Shkoda</option>
           </select>
         </div>
         <div className={cls.filterForm}>
