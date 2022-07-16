@@ -5,29 +5,29 @@ import cls from './Notifications.module.scss'
 
 
 const Notifications = () => {
-  const [ chatBase, setChatBase ] = React.useState(null)
+  const [chatBase, setChatBase] = React.useState(null)
 
   React.useEffect(() => {
     Message.getFirstMessage()
       .then(res => {
         const result = Object.values(res.data)
 
-        var newResult = result && result.filter(item => {
-          if(item.id === item.id){
+        const newResult = result && result.filter(item => {
+          if (item.id === item.id) {
             return item
           }
         })
-        
+
         setChatBase(newResult)
       })
-    }, [chatBase])
-    
-    const navigate = useNavigate()
+  }, [chatBase])
 
-    const toChat = (id) => {
-      localStorage.setItem('userId', id)
-      navigate('/chat')
-    }
+  const navigate = useNavigate()
+
+  const toChat = (id) => {
+    localStorage.setItem('userId', id)
+    navigate('/chat')
+  }
 
   // const send = () => {
   //   const time = new Date()
@@ -45,13 +45,13 @@ const Notifications = () => {
   return (
     <div className={cls.notifications}>
       {
-        chatBase ? chatBase.map(({id, name, message}, i) => (
-          <div 
+        chatBase ? chatBase.map(({ id, name, message }, i) => (
+          <div
             className={cls.message}
             onClick={() => toChat(id)}
             key={i}
           >
-            
+
             <p>{name}</p>
             <p>{message}</p>
           </div>

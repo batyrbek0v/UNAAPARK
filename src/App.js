@@ -10,7 +10,8 @@ import FAQ from './pages/FAQ'
 import Promo from './pages/Promo'
 import Contacts from './pages/Contacts'
 import Login from './pages/Login'
-import Send_Ads from './pages/Send_ads'
+// import Send_Ads from './pages/Send_ads'
+import SendAds from './pages/Send_ads/index'
 import Anchor from './components/Anchor'
 import Support from './components/Support'
 import PrivateRoute from './components/Private/PrivateRoute'
@@ -22,12 +23,12 @@ import ChatAdmin from './components/ChatAdmin'
 import PrivateAdmin from './components/PrivateAdmin/PrivateAdmin'
 
 function App() {
+
   return (
     <div>
       <header>
         <NavBar />
       </header>
-
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -36,7 +37,7 @@ function App() {
           <Route path='/faq' element={<FAQ />} />
           <Route path='/auth/register' element={<Register />} />
           <Route element={<PrivateRoute />}>
-            <Route path='/send_ads' element={<Send_Ads />} />
+            <Route path='/send_ads' element={<SendAds />} />
             <Route path='/auth/login' element={<Login />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/saved' element={<Favorites />} />

@@ -6,13 +6,7 @@ const Anchor = () => {
 
 	const [anchorActive, setAnchorActive] = React.useState(true)
 
-	function scroll() {
-		window.scroll({
-			left: 0,
-			top: 0,
-			behavior: 'smooth',
-		})
-	}
+	const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	window.onscroll = () => {
 		if (window.scrollY > 100) {
@@ -26,7 +20,7 @@ const Anchor = () => {
 	return (
 		<div
 			className={anchorActive ? cls.anchor : cls.anchorNone}
-			onClick={scroll}
+			onClick={scrollToTop}
 		>
 			<li>
 				<HiOutlineArrowCircleUp />

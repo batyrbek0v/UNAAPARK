@@ -7,12 +7,13 @@ import { BsBookmark } from 'react-icons/bs'
 import { useAuth } from '../../../providers/useAuth'
 import errorSound from '../../sound/error.mp3'
 import successSound from '../../sound/success.mp3'
-import './Card.scss'
-
+import notCar from '../../images/notFoundCar.png'
 import { modalAlert } from '../../Alerts'
+import './Card.scss'
 
 
 const Card = ({ base, filteredCars }) => {
+
 	const { users } = useAuth()
 
 	const error = new Audio(errorSound)
@@ -46,18 +47,18 @@ const Card = ({ base, filteredCars }) => {
 		<>
 			<div className='card_container'>
 				{
-					filteredCars.length > 0
 
-						? filteredCars.map(({ id, model, title, year, photo, price }) => (
+					filteredCars.length > 0 ?
+						filteredCars.map(({ id, model, mark, year, photo, price }) => (
 							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
 								<div className="card_body">
 									<div className="card_img">
 										<Link to={`/carsmore/${id}`}>
-											<img src={photo.url ? photo.url : notImage} alt={title} />
+											<img src={photo.url ? photo.url : notImage} alt={mark} />
 										</Link>
 									</div>
 									<div className='card_title'>
-										<h1>{title}</h1>
+										<h1>{mark}</h1>
 										<h2>{model}</h2>
 										<h4>{year}</h4>
 										<h4>{price} $ в сутки</h4>
@@ -84,7 +85,12 @@ const Card = ({ base, filteredCars }) => {
 								</div>
 							</div>
 						))
-						: filteredCars.length < 0 ? <h1>Ничего не найдено!</h1> : <h1>Ничего не найдено!</h1>
+						: filteredCars.length < 0
+							? ''
+							: <div>
+								<h1>По вашему запросу ничего не найдено</h1>
+								<img src={notCar} alt="" />
+							</div>
 				}
 			</div>
 		</>

@@ -39,7 +39,8 @@
             transition: 0.3s;
             margin: 20px 2.5px;
             border: 1px solid #d6e8f9;
-            &:hover{
+
+            &:hover {
                 box-shadow: none;
             }
         }
@@ -76,12 +77,15 @@
                     justify-content: center;
                     align-items: center;
                 }
+
                 @media (min-width:768px) {
                     height: 200px;
                 }
+
                 @media (min-width:1024px) {
                     height: auto;
                 }
+
                 img {
                     @media (min-width:320px) {
                         width: 100%;
@@ -100,9 +104,11 @@
                     align-items: flex-end;
                     text-align: right;
                 }
+
                 @media (min-width:768px) {
                     justify-content: center;
                 }
+
                 h1,
                 h2,
                 h3,
@@ -110,6 +116,7 @@
                     margin: 0;
                     color: #777;
                 }
+
                 h1 {
                     @media (min-width:320px) {
                         font-size: 1.2rem;

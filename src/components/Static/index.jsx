@@ -11,11 +11,12 @@ import { useParams } from 'react-router-dom'
 
 const Static = () => {
 
-
   const { base } = useCard()
 
-  const {id} = useParams()
+  const { id } = useParams()
+
   const filter = base && base.filter(item => item.id === id ? item : '')
+  
   console.log(base);
 
   return (
@@ -24,7 +25,7 @@ const Static = () => {
         <BetweenTitle color="black" />
         <div className={cls.stat_block}>
           {
-            filter && filter.map(base => <ProgressCircle percentage={base.maxSpeed} article="км"/>)
+            filter && filter.map(base => <ProgressCircle percentage={base.maxSpeed} article="км" />)
           }
           <p>МАХ.Скорость</p>
         </div>

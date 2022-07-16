@@ -10,7 +10,7 @@ const Dot = ({ index, sliderindex, image }) => {
     <>
       {
         Object.values(image)
-          .map((url, i) => (
+          .reverse().map((url, i) => (
             <img
               className={sliderindex === i + 1 ? "dot_img dotActive" : "dot_img"}
               src={url}
