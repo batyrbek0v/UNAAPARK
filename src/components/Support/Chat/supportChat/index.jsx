@@ -30,6 +30,7 @@ const SupportChat = ({ setChatActive }) => {
   }, [database])
       
   const send = () => {
+
     const time = new Date()
 
     text.length === 0 ? modalAlert.emptyArea() : Message.post(users.id, {

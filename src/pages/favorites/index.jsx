@@ -21,11 +21,11 @@ const Favorites = () => {
 			.then(res => {
 				if (res.data) {
 					const baseWithID = Object.entries(res.data).map(([id, item]) => {
-							return {
-								id,
-								...item
-							}
-						})
+						return {
+							id,
+							...item
+						}
+					})
 					setBase(baseWithID)
 				}
 			})
@@ -35,9 +35,9 @@ const Favorites = () => {
 		getCartBase()
 	}, [])
 
-	
 
-		console.log(base);
+
+	console.log(base);
 
 	const handleRemoveCar = (id) => {
 		modalAlert.isSaved('Успешно удалено !', 'success')
@@ -45,7 +45,7 @@ const Favorites = () => {
 			getCartBase()
 		})
 	}
-	
+
 	return (
 		<React.Fragment>
 			{
@@ -58,7 +58,7 @@ const Favorites = () => {
 									<div className="card_body">
 										<div className="card_img">
 											<Link to={`/carsmore/${id}`}>
-												<img src={photo ? photo : notImage} alt={title} />
+												<img src={photo.url ? photo.url : notImage} alt={title} />
 											</Link>
 										</div>
 										<div className='card_title'>

@@ -6,13 +6,8 @@ import banner from '../../images/banner.webp'
 
 const Banner = () => {
 
-    function scroll() {
-        window.scroll({
-            left: 0,
-            top: 1200,
-            behavior: 'smooth',
-        })
-    }
+    const scrollToDown = () => window.scrollTo({ top: 1300, behavior: 'smooth' })
+
     return (
         <>
             <div className={cls.container}>
@@ -22,10 +17,9 @@ const Banner = () => {
                         <p>
                             Арендовать автомобиль достаточно просто и легко. Аренда машины в Кыргызстане является доступным решением – клиент выбирает транспортное средство и оплачивает стоимость услуги.
                         </p>
-                        <li onClick={e => {
-                            e.preventDefault()
-                            scroll()
-                        }}>Вниз <MdExpandMore /> </li>
+                        <li onClick={scrollToDown}>
+                            Вниз <MdExpandMore />
+                        </li>
                     </div>
                 </div>
                 <div className={cls.left}>
