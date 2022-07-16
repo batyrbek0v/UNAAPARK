@@ -12,8 +12,12 @@ import { modalAlert } from '../../Alerts'
 import './Card.scss'
 
 
+<<<<<<< HEAD
+const Card = ({ base }) => {
+=======
 const Card = ({ base, filteredCars }) => {
 
+>>>>>>> a0e34c8c95317e37dcef552d7d21fea3f8b40cf6
 	const { users } = useAuth()
 
 	const error = new Audio(errorSound)
@@ -47,9 +51,14 @@ const Card = ({ base, filteredCars }) => {
 		<>
 			<div className='card_container'>
 				{
+<<<<<<< HEAD
+					base.length > 0
+						? base.map(({ id, model, title, year, photo, price, isBroned }) => (
+=======
 
 					filteredCars.length > 0 ?
 						filteredCars.map(({ id, model, mark, year, photo, price }) => (
+>>>>>>> a0e34c8c95317e37dcef552d7d21fea3f8b40cf6
 							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
 								<div className="card_body">
 									<div className="card_img">
@@ -79,18 +88,35 @@ const Card = ({ base, filteredCars }) => {
 										onClick={() => {
 											window.open('https://t.me/sattarzanov')
 										}}
+										style={
+											isBroned
+											?
+											{
+												background: 'red',
+												opacity: '0.5'
+											}
+											:
+											{
+												opacity: '1'
+											}
+										}
+										disabled={isBroned ? true : false}
 									>
-										Забронировать
+										{isBroned ? 'Забронирован' : 'Забронировать'}
 									</button>
 								</div>
 							</div>
 						))
+<<<<<<< HEAD
+						: base.length < 0 ? <h1>Ничего не найдено!</h1> : <h1>Ничего не найдено!</h1>
+=======
 						: filteredCars.length < 0
 							? ''
 							: <div>
 								<h1>По вашему запросу ничего не найдено</h1>
 								<img src={notCar} alt="" />
 							</div>
+>>>>>>> a0e34c8c95317e37dcef552d7d21fea3f8b40cf6
 				}
 			</div>
 		</>

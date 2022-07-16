@@ -37,18 +37,8 @@ const FirstMessage = ({ setChatActive }) => {
     const time = new Date()
 
     localStorage.setItem('supportActive', supportActive)
-    Message.post(users.id, {
-      id: users.id,
-      name: users.name,
-      message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
-      answer: false,
-      times: {
-        hour: time.getHours(),
-        minute: time.getMinutes()  
-      }
-    })
 
-    Message.postFirstMessage({
+    Message.post(users.id, {
       id: users.id,
       name: users.name,
       message: text.length < 0 ? alert('Напишите что-нибудь') : text, 
