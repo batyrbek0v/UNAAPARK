@@ -8,7 +8,7 @@ import { marks } from '../utils/Marks'
 const Carss = () => {
 
   const { base } = useCard()
-  const [mark, setMark] = useState('')
+  const [ mark, setMark ] = useState('')
 
 
   const [ database, setDatabase ] = React.useState(null)
@@ -26,9 +26,9 @@ const Carss = () => {
     console.log(result);
   }, [category])
 
-  const filteredCars = base?.filter(car => {
-    return car.title.toLowerCase().includes(mark.toLocaleLowerCase()) 
-  })
+  // const filteredCars = base?.filter(car => {
+  //   return car.title.includes(mark) 
+  // })
 
   return (
     <div className={cls.filterToCenter}>
@@ -45,7 +45,7 @@ const Carss = () => {
         {
           <Card 
             base={base} 
-            filteredCars={filteredCars} 
+            // filteredCars={filteredCars} 
             filteredWithMark={database} 
           />
         }

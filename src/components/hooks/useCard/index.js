@@ -4,6 +4,7 @@ import { API } from '../../../configs/api'
 export const useCard = () => {
 
   const [base, setBase] = React.useState(null)
+  const [zav, setZav] = React.useState('')
 
   React.useEffect(() => {
     API.get()
@@ -17,8 +18,9 @@ export const useCard = () => {
             }
           }) : []
         setBase(result)
+        setZav('dsf')
       })
-  }, [])
+  }, [zav])
   return {
     base
   }

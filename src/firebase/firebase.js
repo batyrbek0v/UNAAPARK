@@ -1,7 +1,6 @@
 import * as firebase from 'firebase/app'
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import { getDatabase } from 'firebase/database'
-import App from '../App';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDntJdWjCFGF9smJTjJQZiVDxogOGZeQVA",

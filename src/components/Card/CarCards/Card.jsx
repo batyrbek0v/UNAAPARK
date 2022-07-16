@@ -12,7 +12,7 @@ import './Card.scss'
 import { modalAlert } from '../../Alerts'
 
 
-const Card = ({ base, filteredCars }) => {
+const Card = ({ base }) => {
 	const { users } = useAuth()
 
 	const error = new Audio(errorSound)
@@ -46,9 +46,8 @@ const Card = ({ base, filteredCars }) => {
 		<>
 			<div className='card_container'>
 				{
-					filteredCars.length > 0
-
-						? filteredCars.map(({ id, model, title, year, photo, price }) => (
+					base.length > 0
+						? base.map(({ id, model, title, year, photo, price, isBroned }) => (
 							<div to={`/carsmore/${id}`} className="cars_card" key={id}>
 								<div className="card_body">
 									<div className="card_img">
@@ -78,13 +77,26 @@ const Card = ({ base, filteredCars }) => {
 										onClick={() => {
 											window.open('https://t.me/sattarzanov')
 										}}
+										style={
+											isBroned
+											?
+											{
+												background: 'red',
+												opacity: '0.5'
+											}
+											:
+											{
+												opacity: '1'
+											}
+										}
+										disabled={isBroned ? true : false}
 									>
-										Забронировать
+										{isBroned ? 'Забронирован' : 'Забронировать'}
 									</button>
 								</div>
 							</div>
 						))
-						: filteredCars.length < 0 ? <h1>Ничего не найдено!</h1> : <h1>Ничего не найдено!</h1>
+						: base.length < 0 ? <h1>Ничего не найдено!</h1> : <h1>Ничего не найдено!</h1>
 				}
 			</div>
 		</>

@@ -8,9 +8,6 @@ import SupportChat from '../supportChat'
 
 const CheckingAuth = ({ chatActive, setChatActive }) => {
   const { users } = useAuth()
-
-  const supportActive = localStorage.getItem('supportActive')
-
   return (
     <>
       {
@@ -42,14 +39,7 @@ const CheckingAuth = ({ chatActive, setChatActive }) => {
           </div>
         </div>
       :
-        supportActive 
-        ? 
         <SupportChat setChatActive={setChatActive} /> 
-        : 
-        <FirstMessage 
-          chatActive={ chatActive } 
-          setChatActive={ setChatActive }
-        />
       }
     </>
   )
