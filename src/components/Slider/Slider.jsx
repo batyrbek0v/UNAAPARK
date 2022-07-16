@@ -34,7 +34,7 @@ const Slider = ({ img }) => {
       <div className="slider_parent">
         {
           Object.values(img)
-            .map((url, i) => (
+            .reverse().map((url, i) => (
               <img
                 className={sliderindex === i + 1 ? "slider_img active" : "slider_img"}
                 src={url}

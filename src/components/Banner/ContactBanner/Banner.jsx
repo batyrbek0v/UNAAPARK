@@ -4,13 +4,7 @@ import cls from './Banner.module.scss'
 import { MdExpandMore } from 'react-icons/md'
 const Banner = () => {
 
-    function scroll() {
-        window.scroll({
-            left: 0,
-            top: 770,
-            behavior: 'smooth',
-        })
-    }
+    const scrollToDown = () => window.scrollTo({ top: 770, behavior: 'smooth' })
 
     return (
         <React.Fragment>
@@ -23,10 +17,9 @@ const Banner = () => {
                             Доставка автомобиля по предварительному заказу 24/7
                             круглосуточная поддержка клиентов
                         </p>
-                        <li onClick={e => {
-                            e.preventDefault()
-                            scroll()
-                        }}><MdExpandMore /> Cвязаться </li>
+                        <li onClick={scrollToDown}>
+                            <MdExpandMore /> Cвязаться
+                        </li>
                     </div>
                 </div>
                 <div className={cls.left}>

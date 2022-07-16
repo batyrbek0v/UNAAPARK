@@ -1,4 +1,6 @@
 import React from 'react'
+import Slider from '../../components/Slider/Slider'
+import Static from '../../components/Static'
 import { API } from '../../configs/api'
 import cls from './ads.module.scss'
 
@@ -52,8 +54,10 @@ const Send_Ads = () => {
     API.post(base)
   }
 
-
   return (
+
+    
+
     <>
       <div className={cls.sendAds}>
         <div className={cls.ads}>
